@@ -44,7 +44,7 @@ You will need the following properly installed on your computer.
 
 * `$ cd path/to/project/interviews.TicTacToe`
 * `$ php -S [ip]:8000`
-* Open Chrome and point it to [ip]:8000
+* Open Chrome and point it to [ip]:8000 -t src/
 
 
 ## External packages used
