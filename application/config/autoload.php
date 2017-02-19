@@ -140,7 +140,7 @@ $autoload['model'] = array();
 | -------------------------------------------------------------------
  */
 spl_autoload_register(function ($class) {
-    if (file_exists(APPPATH . '../src/Models/' . $class . '.php')) {
+    if (file_exists(APPPATH . 'eloquent/' . $class . '.php')) {
         include APPPATH . 'eloquent/' . $class . '.php';
     }
 });

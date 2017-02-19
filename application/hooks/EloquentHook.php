@@ -48,7 +48,7 @@ class EloquentHook
         $capsule = new Capsule;
  
         $capsule->addConnection([
-            'driver'    => 'mysql',
+            'driver'    => 'mysqli',
             'host'      => $config->hostname,
             'database'  => $config->database,
             'username'  => $config->username,
