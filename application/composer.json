@@ -12,7 +12,8 @@
 	},
 	"require": {
 		"php": ">=7.0.0",
-		"illuminate/database": "^5.4"
+		"doctrine/orm": "2.4.0-RC2",
+		"tightenco/collect": "v5.4.12"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
