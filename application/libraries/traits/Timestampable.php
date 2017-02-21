@@ -8,11 +8,17 @@
 
 namespace TicTacToe\application\libraries\traits;
 
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\ORM\Mapping\PreUpdate;
+
 /**
  * Class Timestampable
  * @package TicTacToe\application\libraries\traits
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks
+ * @Entity
+ * @HasLifecycleCallbacks
  */
 trait Timestampable
 {
@@ -46,8 +52,8 @@ trait Timestampable
     }
 
     /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
+     * @PrePersist()
+     * @PreUpdate()
      */
     public function updateDateModified()
     {
