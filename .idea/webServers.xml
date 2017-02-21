@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="49f65e72-ffa6-40ae-a629-5415cafd5dbe" name="VagrantBox" url="http://192.168.1.23">
+        <fileTransfer host="192.168.1.23" port="22" rootFolder="/home/vagrant" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
