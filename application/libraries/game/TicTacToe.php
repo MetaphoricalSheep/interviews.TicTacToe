@@ -9,13 +9,11 @@
 namespace TicTacToe\application\libraries\game;
 
 
-use TicTacToe\application\libraries\game\enums\BaseEnum;
-
 class TicTacToe
 {
     protected $State;
 
-    public function TicTacToe() { }
+    public function __construct() { }
 
     public function TransitionState($previousState)
     {

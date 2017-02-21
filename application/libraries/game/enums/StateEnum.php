@@ -16,4 +16,5 @@ abstract class StateEnum
     const Player1Wins = 2;
     const Player2Wins = 3;
     const Draw = 4;
+    const InvalidMove = 5;
 }

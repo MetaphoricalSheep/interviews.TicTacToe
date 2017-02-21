@@ -9,34 +9,104 @@
 namespace TicTacToe\application\libraries\game;
 
 
+use libraries\game\exceptions\OutOfTurnException;
 use TicTacToe\application\libraries\game\enums\StateEnum;
+use TicTacToe\libraries\game\BasePiece;
+use TicTacToe\libraries\game\exceptions\InvalidPositionException;
+use TicTacToe\libraries\game\IPiece;
 
 class State
 {
     /** @var string */
-    protected $Turn;
+    protected $Turn = Piece::Cross;
 
     /** @var  int **/
     protected $Round = 1;
 
     /** @var int **/
-    protected $State = 0;
+    protected $State = StateEnum::NewGame;
 
     /** @var array **/
     protected $Board = [];
 
-    /** @var int */
-    protected $Player1Score = 1;
+    /** @var int **/
+    protected $Position;
 
-    /** @var int */
-    protected $Player2Score = 2;
+    /** @var IPiece **/
+    protected $Piece;
 
-    public function State() { }
+    /**
+     * State constructor.
+     * @param $previousState
+     * @return State
+     */
+    public function __construct($previousState)
+    {
+        if ($previousState != null)
+        {
+            $this->Turn = $previousState->Turn;
+            $this->Round = $previousState->Round;
+            $this->State = $previousState->State;
+            $this->Board = $previousState->Board;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function GetPosition() : int
+    {
+        return $this->Position;
+    }
+
+    /**
+     * @param int $position
+     * @return State $this
+     * @throws InvalidPositionException
+     */
+    protected function SetPosition($position) : State
+    {
+        if ($position < 0 || $position > 8 || $this->Board[$position] != null)
+        {
+            throw new InvalidPositionException($position);
+        }
+
+        $this->Position = $position;
+
+        return $this;
+    }
 
     /** @return int **/
     public function GetState() : int
     {
         return $this->State;
+    }
+
+    /**
+     * @return IPiece
+     */
+    public function GetPiece() : IPiece
+    {
+        return $this->Piece;
+    }
+
+    /**
+     * @param IPiece $piece
+     * @return State $this
+     * @throws OutOfTurnException
+     */
+    protected function SetPiece($piece) : State
+    {
+        if ($piece != $this->Turn)
+        {
+            throw new OutOfTurnException($piece->GetSymbol());
+        }
+
+        $this->Piece = $piece;
+
+        return $this;
     }
 
     /** @return int **/
@@ -46,9 +116,37 @@ class State
     }
 
     /**
-     * @return bool
+     * @param int $position
+     * @param IPiece $piece
+     * @return int
      */
-    private function IsTerminal() : bool
+    public function TransitionState($position, $piece) : int
+    {
+        if ($this->Round == 9)
+        {
+            return $this->State;
+        }
+
+        $this->AdvanceRound();
+
+        $this->SetPosition($position);
+        $this->SetPiece($piece);
+
+        $this->Move();
+        $this->TerminalCheck();
+
+        return $this->State;
+    }
+
+    protected function Move()
+    {
+        $this->Board[$this->Position] = $this->Piece->GetSymbol();
+    }
+
+    /**
+     * @return void
+     */
+    private function TerminalCheck()
     {
         $board = $this->Board;
 
@@ -58,7 +156,7 @@ class State
             if ($p != null && $p == $board[$r + 1] &&  $p == $board[$r + 2])
             {
                 $this->DeclareWinner($p);
-                return true;
+                return;
             }
         }
         unset($r, $p);
@@ -69,7 +167,7 @@ class State
             if ($p != null && $p == $board[$c + 3] && $p == $board[$c + 6])
             {
                 $this->DeclareWinner($p);
-                return true;
+                return;
             }
         }
         unset($c, $p);
@@ -80,12 +178,15 @@ class State
             if ($p != null && $p == $board[$r + $d] && $p == $board[$r + 2 * $d])
             {
                 $this->DeclareWinner($p);
-                return true;
+                return;
             }
         }
         unset($r, $d, $p);
 
-        return false;
+        if ($this->Round >= 9)
+        {
+            $this->DeclareDraw();
+        }
     }
 
     private function DeclareWinner($piece)
@@ -93,14 +194,14 @@ class State
         $this->State = ($piece == 'X') ? StateEnum::Player1Wins : StateEnum::Player2Wins;
     }
 
-    private function AdvanceRound()
+    private function DeclareDraw()
     {
-        $this->Turn = "X" ? "O" : "X";
-        $this->Round++;
+        $this->State = StateEnum::Draw;
     }
 
-    public function TransitionState()
+    private function AdvanceRound()
     {
-
+        $this->Turn = BasePiece::Cross ? BasePiece::Naught : BasePiece::Cross;
+        $this->Round++;
     }
 }
