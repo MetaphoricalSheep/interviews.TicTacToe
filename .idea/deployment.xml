@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="VagrantBox">
+  <component name="PublishConfigData" autoUpload="Always" serverName="VagrantBox" stopOnFirstError="true" overwriteAll="false" createEmptyFolders="true">
     <serverData>
       <paths name="VagrantBox">
         <serverdata>
           <mappings>
             <mapping deploy="/workspace/www/TicTacToe" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/.idea" />
+            <excludedPath local="true" path="$PROJECT_DIR$/system" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.gitignore" />
+            <excludedPath local="true" path="$PROJECT_DIR$/README.md" />
+            <excludedPath local="true" path="$PROJECT_DIR$/application/language" />
+            <excludedPath local="true" path="$PROJECT_DIR$/application/vendor" />
+            <excludedPath local="true" path="$PROJECT_DIR$/application/contributing.md" />
+            <excludedPath local="true" path="$PROJECT_DIR$/application/license.txt" />
+            <excludedPath local="true" path="$PROJECT_DIR$/application/readme.rst" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>

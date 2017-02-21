@@ -8,7 +8,9 @@
 
 namespace models\Entities;
 
+use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 
 
@@ -28,13 +30,13 @@ class GameType
 
     /**
      * @var string
-     * @Id @Column(type="string", name="Name")
+     * @Column(type="string", name="Name")
      **/
     protected $Name;
 
     /**
      * @var string
-     * @Id @Column(type="string", name="Label")
+     * @Column(type="string", name="Label")
      **/
     protected $Label;
 
