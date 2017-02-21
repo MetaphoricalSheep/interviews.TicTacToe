@@ -6,7 +6,7 @@
  * Time: 9:04 PM
  */
 
-namespace libraries\game\exceptions;
+namespace libraries\TicTacToe\exceptions;
 
 
 class OutOfTurnException extends \Exception

@@ -6,7 +6,7 @@
  * Time: 8:23 PM
  */
 
-namespace TicTacToe\libraries\game\exceptions;
+namespace libraries\TicTacToe\exceptions;
 
 
 class InvalidPositionException extends \Exception

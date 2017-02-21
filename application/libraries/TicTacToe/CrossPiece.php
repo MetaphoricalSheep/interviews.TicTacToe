@@ -6,10 +6,8 @@
  * Time: 8:52 PM
  */
 
-namespace libraries\game;
+namespace libraries\TicTacToe;
 
-
-use TicTacToe\libraries\game\BasePiece;
 
 class CrossPiece extends BasePiece
 {

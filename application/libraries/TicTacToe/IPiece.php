@@ -6,7 +6,7 @@
  * Time: 8:50 PM
  */
 
-namespace TicTacToe\libraries\game;
+namespace libraries\TicTacToe;
 
 
 interface IPiece

@@ -6,7 +6,7 @@
  * Time: 8:54 PM
  */
 
-namespace TicTacToe\libraries\game;
+namespace libraries\TicTacToe;
 
 
 abstract class BasePiece implements IPiece

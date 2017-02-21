@@ -6,24 +6,25 @@
  * Time: 11:30 PM
  */
 
-namespace TicTacToe\application\model\Entities;
+namespace models\Entities;
 
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
-use TicTacToe\application\libraries\traits\Timestampable;
+use libraries\traits\Timestampable;
 
 
 /**
  * Class Game
- * @package TicTacToe\application\model\Entities
+ * @package model\Entities
  *
- * @Entity(repositoryClass="GameRepository") @Table(name="Game")
+ * @Entity(repositoryClass="models\Repositories\GameRepository") @Table(name="Game")
  */
 class Game
-{    use Timestampable;
+{
+    use Timestampable;
 
     /**
      * @var integer

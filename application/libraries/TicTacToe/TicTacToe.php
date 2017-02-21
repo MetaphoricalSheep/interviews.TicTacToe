@@ -6,7 +6,7 @@
  * Time: 6:40 PM
  */
 
-namespace TicTacToe\application\libraries\game;
+namespace libraries\TicTacToe;
 
 
 class TicTacToe

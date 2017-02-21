@@ -5,11 +5,12 @@
  *
  */
 
-define('APPPATH', dirname(__FILE__) . '/');
+define('APPPATH', __DIR__ . '/');
 define('BASEPATH', APPPATH . '/../system/');
 define('ENVIRONMENT', 'development');
 
 require APPPATH.'config/autoload.php';
+require APPPATH.'vendor/autoload.php';
 require APPPATH.'libraries/Doctrine.php';
 require APPPATH.'libraries/traits/Timestampable.php';
 

@@ -6,19 +6,17 @@
  * Time: 8:36 AM
  */
 
-namespace TicTacToe\application\libraries\game;
+namespace libraries\TicTacToe;
 
 
-use libraries\game\exceptions\OutOfTurnException;
-use TicTacToe\application\libraries\game\enums\StateEnum;
-use TicTacToe\libraries\game\BasePiece;
-use TicTacToe\libraries\game\exceptions\InvalidPositionException;
-use TicTacToe\libraries\game\IPiece;
+use libraries\TicTacToe\exceptions\OutOfTurnException;
+use libraries\TicTacToe\enums\StateEnum;
+use libraries\TicTacToe\exceptions\InvalidPositionException;
 
 class State
 {
     /** @var string */
-    protected $Turn = Piece::Cross;
+    protected $Turn = BasePiece::Cross;
 
     /** @var  int **/
     protected $Round = 1;

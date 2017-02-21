@@ -6,7 +6,7 @@
  * Time: 10:48 PM
  */
 
-namespace TicTacToe\application\libraries\traits;
+namespace libraries\traits;
 
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;

@@ -6,7 +6,7 @@
  * Time: 8:39 AM
  */
 
-namespace TicTacToe\application\libraries\game\enums;
+namespace libraries\TicTacToe\enums;
 
 
 abstract class StateEnum

@@ -6,21 +6,21 @@
  * Time: 9:45 PM
  */
 
-namespace TicTacToe\application\model\Entities;
+namespace models\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
-use TicTacToe\application\libraries\traits\Timestampable;
+use libraries\traits\Timestampable;
 
 
 /**
  * Class Player
- * @package TicTacToe\application\model\Entities
+ * @package models\Entities
  *
- * @Entity @Table(name="Player")
+ * @Entity(repositoryClass="models\Repositories\PlayerRepository") @Table(name="Player")
  */
 class Player
 {
@@ -64,8 +64,8 @@ class Player
 
     public function Player()
     {
-        $this->XGames = new ArrayCollection();
-        $this->YGames = new ArrayCollection();
+        $this->Games = new ArrayCollection();
+        $this->Games2 = new ArrayCollection();
         $this->GamesWon = new ArrayCollection();
     }
 
