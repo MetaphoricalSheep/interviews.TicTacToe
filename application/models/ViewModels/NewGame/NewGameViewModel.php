@@ -18,6 +18,21 @@ class NewGameViewModel extends BaseViewModel
     private $GameTypes;
 
     /**
+     * NewGameViewModel constructor.
+     * @param Collection|null $gameTypes
+     * @return NewGameViewModel
+     */
+    public function __construct($gameTypes = null)
+    {
+        if ($gameTypes == null)
+        {
+            return $this;
+        }
+
+        return $this->SetGameTypes($gameTypes);
+    }
+
+    /**
      * @return Collection
      */
     public function GetGameTypes() : Collection
@@ -27,9 +42,9 @@ class NewGameViewModel extends BaseViewModel
 
     /**
      * @param Collection $gameTypes
-     * @return $this
+     * @return NewGameViewModel
      */
-    public function SetGameTypes($gameTypes)
+    public function SetGameTypes($gameTypes) :NewGameViewModel
     {
         $this->GameTypes = $gameTypes;
         return $this;

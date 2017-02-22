@@ -14,6 +14,18 @@ interface IViewModel
     /** @return string */
     public function GetTitle() : string;
 
-    /** @var string $title */
-    public function SetTitle($title);
+    /**
+     * @var string $title
+     * @return IViewModel
+     */
+    public function SetTitle(string $title) : IViewModel;
+
+    /** @return string */
+    public function GetView() : string;
+
+    /**
+     * @param string $path
+     * @return IViewModel
+     */
+    public function SetView(string $path) : IViewModel;
 }

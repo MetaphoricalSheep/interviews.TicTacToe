@@ -77,10 +77,13 @@
 	 ***************** YOUR LIBRARIES *****************
 	 * @property Layout              $layout               Layout Class
 	 ***************** YOUR MODELS *****************
-	 * @property user_model          $user_model           ,$user
+	 * @property Game          $user_model           ,$user
 	 * @property data_model          $data_model
 	 * @property products_model      $products_model
 	 * @property movie_model         $movie_model
+     *
+     *
+     * @property Doctrine            $doctrine
 	 */
 	class CI_Controller {
 		public function __construct() {

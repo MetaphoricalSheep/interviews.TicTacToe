@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping\PrePersist;
 use Doctrine\ORM\Mapping\PreUpdate;
 
 /**
- * Class Timestampable
+ * Trait Timestampable
  * @package TicTacToe\application\libraries\traits
  * @Entity
  * @HasLifecycleCallbacks

@@ -58,7 +58,9 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('traits/Timestampable');
+$autoload['libraries'] = [
+    'Doctrine',
+];
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +134,23 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array();
+$autoload['model'] = [];
+
+
+
+spl_autoload_extensions('.php'); // Only Autoload PHP Files
+
+spl_autoload_register(function($class)
+{
+    if( strpos($class,'\\') !== false )
+    {
+        // Namespaced Classes
+        $file = str_replace('\\','/',$class);
+
+        if($class[0] !== '/'){
+            $file = APPPATH.$file.'.php';
+        }
+
+        require($file);
+    }
+});

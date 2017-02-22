@@ -3,6 +3,7 @@
 namespace models\Repositories;
 
 use Doctrine\ORM\EntityRepository;
+use Illuminate\Support\Collection;
 
 /**
  * GameRepository
@@ -12,4 +13,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class GameTypeRepository extends EntityRepository
 {
+    /**
+     * @return Collection
+     */
+    public function findAll() : Collection
+    {
+        $gameTypes = parent::findAll();
+        return new Collection($gameTypes);
+    }
 }

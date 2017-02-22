@@ -7,18 +7,15 @@
 use Doctrine\Common\ClassLoader,
     Doctrine\ORM\Configuration,
     Doctrine\ORM\EntityManager,
-    Doctrine\Common\Cache\ArrayCache,
-    Doctrine\DBAL\Logging\EchoSQLLogger;
-
+    Doctrine\Common\Cache\ArrayCache;
 
 class Doctrine {
 
-    public $em = null;
+    private $em = null;
 
     public function __construct()
     {
         // Load database configuration from CodeIgniter
-        require_once APPPATH.'vendor/autoload.php';
         require_once APPPATH.'config/database.php';
 
         // load the Doctrine classes
@@ -50,7 +47,7 @@ class Doctrine {
         $config->setProxyNamespace('Proxies');
 
         // Set up logger
-        $logger = new EchoSQLLogger;
+        $logger = new Doctrine\DBAL\Logging\DebugStack();
         $config->setSQLLogger($logger);
 
         $config->setAutoGenerateProxyClasses( TRUE );
@@ -66,5 +63,13 @@ class Doctrine {
 
         // Create EntityManager
         $this->em = EntityManager::create($connectionOptions, $config);
+    }
+
+    /**
+     * @return EntityManager
+     */
+    public function GetEntityManager() : EntityManager
+    {
+        return $this->em;
     }
 }

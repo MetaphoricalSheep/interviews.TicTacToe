@@ -6,18 +6,23 @@
  * Time: 11:05 PM
  */
 
-namespace controllers;
+use models\ViewModels\NewGame\NewGameViewModel;
 
-
-use CI_Controller;
-use models\ViewModels\BaseViewModel;
-
+/**
+ * Class NewGameController
+ * @package controllers
+ */
 class NewGameController extends CI_Controller
 {
     public function index()
     {
-        $vm = new NewGameViewModel();
+        $em = $this->doctrine->GetEntityManager();
+        $viewModel = new NewGameViewModel($em->getRepository('models\Entities\GameType')->findAll());
+        $viewModel
+            ->SetTitle('Tic Tac Toe - New Game')
+            ->SetView('NewGame/NewGame');
+        $data = ['viewModel' => $viewModel];
 
-        $this->load->view('welcome_message', $data);
+        $this->load->view('master', $data);
     }
 }

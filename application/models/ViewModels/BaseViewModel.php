@@ -11,7 +11,10 @@ namespace models\ViewModels;
 
 class BaseViewModel implements IViewModel
 {
+    /** @var string */
     private $Title = "Tic Tac Toe";
+    /** @var string */
+    private $View = "";
 
     /**
      * @return string
@@ -23,11 +26,27 @@ class BaseViewModel implements IViewModel
 
     /**
      * @param string $title
-     * @return $this
+     * @return IViewModel
      */
-    public function SetTitle($title)
+    public function SetTitle(string $title) : IViewModel
     {
         $this->Title = $title;
+        return $this;
+    }
+
+    /** @return string */
+    public function GetView() : string
+    {
+        return $this->View;
+    }
+
+    /**
+     * @param string $path
+     * @return IViewModel
+     */
+    public function SetView(string $path) : IViewModel
+    {
+        $this->View = $path;
         return $this;
     }
 }
