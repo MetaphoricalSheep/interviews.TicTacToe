@@ -12,9 +12,12 @@ use models\ViewModels\NewGame\NewGameViewModel;
  * Class NewGameController
  * @package controllers
  */
-class NewGameController extends CI_Controller
+class GameSetupController extends CI_Controller
 {
-    public function index()
+    /**
+     * @param int $gameType
+     */
+    public function index(int $gameType)
     {
         $em = $this->doctrine->GetEntityManager();
         $viewModel = new NewGameViewModel($em->getRepository('models\Entities\GameType')->findAll());

@@ -41,6 +41,18 @@ class GameType
     protected $Label;
 
     /**
+     * @var string
+     * @Column(type="string", name="StartLabel")
+     */
+    protected $StartLabel;
+
+    /**
+     * @var string
+     * @Column(type="string", name="StartUrl")
+     */
+    protected $StartUrl;
+
+    /**
      * @return int
      */
     public function GetId() : int
@@ -58,10 +70,12 @@ class GameType
 
     /**
      * @param string
+     * @return GameType
      */
-    public function SetName($name)
+    public function SetName($name) : GameType
     {
         $this->Name = $name;
+        return $this;
     }
 
     /**
@@ -74,9 +88,45 @@ class GameType
 
     /**
      * @param string
+     * @return GameType
      */
-    public function SetLabel($label)
+    public function SetLabel($label) : GameType
     {
         $this->Label = $label;
+        return $this;
+    }
+
+    /** @return string */
+    public function GetStartLabel() : string
+    {
+        return $this->StartLabel;
+    }
+
+    /**
+     * @param string $label
+     * @return GameType
+     */
+    public function SetStartLabel(string $label) : GameType
+    {
+        $this->StartLabel = $label;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function GetStartUrl() : string
+    {
+        return $this->StartUrl;
+    }
+
+    /**
+     * @param string $url
+     * @return GameType
+     */
+    public function SetStartUrl(string $url) : GameType
+    {
+        $this->StartUrl = $url;
+        return $this;
     }
 }

@@ -74,11 +74,13 @@ class Game
 
     /**
      * @param Player $player
+     * @return Game
      */
-    public function SetPlayer1($player)
+    public function SetPlayer1($player) : Game
     {
         $player->AddToPlayer1Games($this);
         $this->Player1 = $player;
+        return $this;
     }
 
     /**
@@ -91,11 +93,13 @@ class Game
 
     /**
      * @param Player $player
+     * @return Game
      */
-    public function SetPlayer2($player)
+    public function SetPlayer2($player) : Game
     {
         $player->AddToPlayer2Games($this);
         $this->Player2 = $player;
+        return $this;
     }
 
     /**
@@ -108,10 +112,12 @@ class Game
 
     /**
      * @param Player $player
+     * @return Game
      */
-    public function SetWinner($player)
+    public function SetWinner($player) : Game
     {
         $player->AddToWins($this);
         $this->Winner = $player;
+        return $this;
     }
 }

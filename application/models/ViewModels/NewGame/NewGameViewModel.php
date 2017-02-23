@@ -29,7 +29,10 @@ class NewGameViewModel extends BaseViewModel
             return $this;
         }
 
-        return $this->SetGameTypes($gameTypes);
+        $this->SetGameTypes($gameTypes);
+        parent::__construct();
+
+        return $this;
     }
 
     /**

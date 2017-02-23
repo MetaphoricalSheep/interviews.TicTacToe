@@ -9,12 +9,21 @@
 namespace models\ViewModels;
 
 
+use Illuminate\Support\Collection;
+
 class BaseViewModel implements IViewModel
 {
     /** @var string */
     private $Title = "Tic Tac Toe";
     /** @var string */
     private $View = "";
+    /** @var Collection  */
+    private $JavaScript;
+
+    public function __construct()
+    {
+        $this->JavaScript = new Collection();
+    }
 
     /**
      * @return string
@@ -47,6 +56,35 @@ class BaseViewModel implements IViewModel
     public function SetView(string $path) : IViewModel
     {
         $this->View = $path;
+
+        return $this->SetJavaScript($path);
+    }
+
+    /**
+     * @param string $path
+     * @return IViewModel
+     */
+    public function SetJavaScript(string $path) : IViewModel
+    {
+        if (file_exists(APPPATH."../public/js/" . $path . ".js"))
+        {
+            $this->JavaScript->push(sprintf('/js/%s.js', $path));
+        }
+
         return $this;
+    }
+
+    /** @return Collection */
+    public function GetJavaScript() : Collection
+    {
+        return $this->JavaScript;
+    }
+
+    public function LoadJavaScript() : void
+    {
+        $this->JavaScript->each(function($js)
+        {
+            echo sprintf('<script src="%s" type="application/javascript"></script>%s', $js, "\n");
+        });
     }
 }

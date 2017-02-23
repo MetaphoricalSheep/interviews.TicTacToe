@@ -4,6 +4,7 @@ namespace models\Repositories;
 
 use Doctrine\ORM\EntityRepository;
 use Illuminate\Support\Collection;
+use models\Entities\GameType;
 
 /**
  * GameRepository
@@ -14,7 +15,7 @@ use Illuminate\Support\Collection;
 class GameTypeRepository extends EntityRepository
 {
     /**
-     * @return Collection
+     * @return Collection(GameType)
      */
     public function findAll() : Collection
     {

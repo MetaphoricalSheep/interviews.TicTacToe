@@ -87,10 +87,12 @@ class Player
 
     /**
      * @param string $email
+     * @return Player
      */
-    public function SetEmail($email)
+    public function SetEmail($email) : Player
     {
         $this->Email = $email;
+        return $this;
     }
 
     /**
@@ -103,10 +105,12 @@ class Player
 
     /**
      * @param string $name
+     * @return Player
      */
-    public function SetCharacterName($name)
+    public function SetCharacterName($name) : Player
     {
         $this->CharacterName = $name;
+        return $this;
     }
 
     /**

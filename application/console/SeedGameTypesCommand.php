@@ -34,37 +34,72 @@ EOT
         /** @var EntityManager $em */
         $em = $this->getHelper('em')->getEntityManager();
 
+
+        $output->writeln('<info>Getting Singleplayer type...</info>');
         $singleplayer = $em->find('models\Entities\GameType', 1);
 
         if ($singleplayer == null) {
+            $output->writeln('<comment>Does not exist. Creating new entry...</comment>');
             $singleplayer = new GameType();
-            $singleplayer->SetName("Singleplayer");
-            $singleplayer->SetLabel("New Singleplayer Game");
+            $singleplayer
+                ->SetName("Singleplayer")
+                ->SetLabel("Singleplayer Game")
+                ->SetStartLabel("Start")
+                ->SetStartUrl("/game");
             $em->persist($singleplayer);
         }
 
+        $output->writeln(sprintf('%s<info>Name:</info>............%s', "\t", $singleplayer->GetName()));
+        $output->writeln(sprintf('%s<info>Label:</info>...........%s', "\t", $singleplayer->GetLabel()));
+        $output->writeln(sprintf('%s<info>Start Label:</info>.....%s', "\t", $singleplayer->GetStartLabel()));
+        $output->writeln(sprintf('%s<info>Start Url:</info>.......%s', "\t", $singleplayer->GetStartUrl()));
+        $output->writeln("");
+
+
+        $output->writeln('<info>Getting Multiplayer type...</info>');
         $multiplayer = $em->find('models\Entities\GameType', 2);
 
         if ($multiplayer == null) {
+            $output->writeln('<comment>Does not exist. Creating new entry...</comment>');
             $multiplayer = new GameType();
-            $multiplayer->SetName("Multiplayer");
-            $multiplayer->SetLabel("New Multiplayer Game");
+            $multiplayer
+                ->SetName('Multiplayer')
+                ->SetLabel('Multiplayer Game')
+                ->SetStartLabel('Join Lobby')
+                ->SetStartUrl("/lobby");
             $em->persist($multiplayer);
         }
 
+        $output->writeln(sprintf('%s<info>Name:</info>............%s', "\t", $multiplayer->GetName()));
+        $output->writeln(sprintf('%s<info>Label:</info>...........%s', "\t", $multiplayer->GetLabel()));
+        $output->writeln(sprintf('%s<info>Start Label:</info>.....%s', "\t", $multiplayer->GetStartLabel()));
+        $output->writeln(sprintf('%s<info>Start Url:</info>.......%s', "\t", $singleplayer->GetStartUrl()));
+        $output->writeln("");
+
+
+        $output->writeln('<info>Getting Hotseat type...</info>');
         $hotSeat = $em->find('models\Entities\GameType', 3);
 
         if ($hotSeat == null)
         {
+            $output->writeln('<comment>Does not exist. Creating new entry...</comment>');
             $hotSeat = new GameType();
-            $hotSeat->SetName("Hot Seat");
-            $hotSeat->SetLabel("New 2-Player Game");
+            $hotSeat
+                ->SetName("Hotseat")
+                ->SetLabel("Hotseat Game")
+                ->SetStartLabel('Start')
+                ->SetStartUrl("/game");
             $em->persist($hotSeat);
         }
 
-        $em->flush();
+        $output->writeln(sprintf('%s<info>Name:</info>............%s', "\t", $hotSeat->GetName()));
+        $output->writeln(sprintf('%s<info>Label:</info>...........%s', "\t", $hotSeat->GetLabel()));
+        $output->writeln(sprintf('%s<info>Start Label:</info>.....%s', "\t", $hotSeat->GetStartLabel()));
+        $output->writeln(sprintf('%s<info>Start Url:</info>.......%s', "\t", $hotSeat->GetStartUrl()));
+        $output->writeln("");
 
-        $output->write('Done');
+        $em->flush();
+        $output->writeln('Done');
     }
 
 }

@@ -9,6 +9,8 @@
 namespace models\ViewModels;
 
 
+use Illuminate\Support\Collection;
+
 interface IViewModel
 {
     /** @return string */
@@ -28,4 +30,15 @@ interface IViewModel
      * @return IViewModel
      */
     public function SetView(string $path) : IViewModel;
+
+    /** @return Collection **/
+    public function GetJavaScript() : Collection;
+
+    /**
+     * @param string $path
+     * @return IViewModel
+     */
+    public function SetJavaScript(string $path) : IViewModel;
+
+    public function LoadJavaScript() : void;
 }

@@ -1,3 +1,5 @@
+@import "newgame.css";
+
 @font-face {
     font-family: SouthPark;
     src: url(../fonts/southpark.ttf)
@@ -10,61 +12,4 @@
 
 body {
     font-family: SouthPark, fantasy;
-}
-
-#container.NewGame h1, h2 {
-    font-family: SouthPark, fantasy;
-    text-align: center;
-}
-
-#container.NewGame h1 {
-    font-size: 64px;
-    color: #EFD610;
-    margin-top: 50px;
-}
-
-#container.NewGame h2 {
-    font-size: 48px;
-    color: #AD1021;
-    margin-top: 25px;
-}
-
-#container.NewGame #player .profile {
-    /*width: 530px;
-    height: 350px;*/
-    border: solid 4px #A85400;
-    border-radius: 15px;
-    text-align: center;
-    margin: 80px auto auto;
-    color: #191B1F;
-    background: #C9A33D;
-}
-
-#container.NewGame #player div:first-child {
-/*    border-right: solid 1px #B2581C;*/
-}
-
-#container.NewGame #player div:last-child {
-/*    border-left: solid 1px #B2581C;*/
-}
-
-#container.NewGame #class {
-    font-size: 24px;
-    margin-top: 25px;
-}
-
-#container.NewGame #name {
-    font-size: 34px;
-    margin-top: 12px;
-}
-
-#container.NewGame .mastery {
-    font-size: 14px;
-    margin-top: 12px;
-}
-
-#container.NewGame .mastery-border {
-    background: #191B1F;
-    height:2px;
-    margin-top: 8px;
 }
