@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d289f02-1f95-40e5-ad37-59e06a78373f" name="Default" comment="o">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/controllers/Welcome.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/views/welcome_message.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/application/views/NewGame/NewGame.php" afterPath="$PROJECT_DIR$/application/views/newgame.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TicTacToe.iml" afterPath="$PROJECT_DIR$/.idea/TicTacToe.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/config.php" afterPath="$PROJECT_DIR$/application/config/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/routes.php" afterPath="$PROJECT_DIR$/application/config/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/console/SeedGameTypesCommand.php" afterPath="$PROJECT_DIR$/application/console/SeedGameTypesCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/NewGameController.php" afterPath="$PROJECT_DIR$/application/controllers/NewGameController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Entities/Game.php" afterPath="$PROJECT_DIR$/application/models/Entities/Game.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Entities/GameType.php" afterPath="$PROJECT_DIR$/application/models/Entities/GameType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Entities/Player.php" afterPath="$PROJECT_DIR$/application/models/Entities/Player.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Repositories/GameTypeRepository.php" afterPath="$PROJECT_DIR$/application/models/Repositories/GameTypeRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/ViewModels/BaseViewModel.php" afterPath="$PROJECT_DIR$/application/models/ViewModels/BaseViewModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/ViewModels/IViewModel.php" afterPath="$PROJECT_DIR$/application/models/ViewModels/IViewModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/ViewModels/NewGame/NewGameViewModel.php" afterPath="$PROJECT_DIR$/application/models/ViewModels/NewGame/NewGameViewModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/master.php" afterPath="$PROJECT_DIR$/application/views/master.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
-    </list>
+    <list default="true" id="0d289f02-1f95-40e5-ad37-59e06a78373f" name="Default" comment="o" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -473,7 +454,7 @@
       <workItem from="1487851805791" duration="4157000" />
       <workItem from="1487863523371" duration="565000" />
       <workItem from="1487864096763" duration="14584000" />
-      <workItem from="1487878956393" duration="7556000" />
+      <workItem from="1487878956393" duration="7629000" />
     </task>
     <task id="LOCAL-00001" summary="Share phpstorm config">
       <created>1487677530209</created>
@@ -486,10 +467,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66035000" />
+    <option name="totallyTimeSpent" value="66108000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
