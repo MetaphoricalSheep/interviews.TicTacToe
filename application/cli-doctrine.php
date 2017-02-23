@@ -15,7 +15,7 @@ require APPPATH.'libraries/Doctrine.php';
 require APPPATH.'libraries/traits/Timestampable.php';
 
 $doctrine = new Doctrine;
-$em = $doctrine->em;
+$em = $doctrine->GetEntityManager();
 
 $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
     'db' => new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($em->getConnection()),

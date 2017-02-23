@@ -8,8 +8,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <title><?=$viewModel->GetTitle()?></title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether-theme-arrows-dark.min.css">
-        <link rel="stylesheet" href="css/bootstrap.slate.min.css">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="/css/bootstrap.slate.min.css">
+        <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
         <?php $this->load->view($viewModel->GetView(), ["viewModel" => $viewModel])?>
