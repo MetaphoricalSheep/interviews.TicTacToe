@@ -31,7 +31,7 @@ function NewGameMenu() {
     };
 
     this.Start = function() {
-        _start.click();
+        _start[0].click();
     };
 
     var _update = function() {

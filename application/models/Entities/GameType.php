@@ -22,6 +22,9 @@ use Doctrine\ORM\Mapping\Id;
  */
 class GameType
 {
+    const Singleplayer = 1;
+    const Multiplayer = 2;
+    const Hotseat = 3;
     /**
      * @var integer
      * @Id @Column(type="integer") @GeneratedValue

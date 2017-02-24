@@ -6,13 +6,13 @@
  * Time: 11:09 PM
  */
 
-namespace models\ViewModels\NewGame;
+namespace models\ViewModels\GameSetup;
 
 
 use Illuminate\Support\Collection;
 use models\ViewModels\BaseViewModel;
 
-class NewGameViewModel extends BaseViewModel implements INewGameViewModel
+class GameSetupViewModel extends BaseViewModel
 {
     /** @var Collection */
     private $GameTypes;
@@ -20,7 +20,7 @@ class NewGameViewModel extends BaseViewModel implements INewGameViewModel
     /**
      * NewGameViewModel constructor.
      * @param Collection|null $gameTypes
-     * @return NewGameViewModel
+     * @return
      */
     public function __construct($gameTypes = null)
     {
@@ -45,9 +45,9 @@ class NewGameViewModel extends BaseViewModel implements INewGameViewModel
 
     /**
      * @param Collection $gameTypes
-     * @return INewGameViewModel
+     * @return NewGameViewModel
      */
-    public function SetGameTypes($gameTypes) : INewGameViewModel
+    public function SetGameTypes($gameTypes) :NewGameViewModel
     {
         $this->GameTypes = $gameTypes;
         return $this;
