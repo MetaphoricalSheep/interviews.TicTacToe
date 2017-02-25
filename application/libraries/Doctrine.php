@@ -16,6 +16,7 @@ class Doctrine {
     public function __construct()
     {
         // Load database configuration from CodeIgniter
+        require_once APPPATH.'vendor/autoload.php';
         require_once APPPATH.'config/database.php';
 
         // load the Doctrine classes
@@ -51,6 +52,8 @@ class Doctrine {
         $config->setSQLLogger($logger);
 
         $config->setAutoGenerateProxyClasses( TRUE );
+
+        \Doctrine\DBAL\Types\Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
 
         // Database connection information
         $connectionOptions = array(

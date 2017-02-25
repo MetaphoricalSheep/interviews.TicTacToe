@@ -10,46 +10,95 @@ namespace models\ViewModels\GameSetup;
 
 
 use Illuminate\Support\Collection;
+use models\Entities\GameType;
+use models\Entities\Player;
 use models\ViewModels\BaseViewModel;
 
-class GameSetupViewModel extends BaseViewModel
+class GameSetupViewModel extends BaseViewModel implements IGameSetupViewModel
 {
+    /** @var GameType */
+    private $GameType;
+
+    /** @var int */
+    private $LocalPlayerCount;
+
     /** @var Collection */
-    private $GameTypes;
+    private $Players;
 
     /**
      * NewGameViewModel constructor.
-     * @param Collection|null $gameTypes
-     * @return
+     * @param GameType|null
      */
-    public function __construct($gameTypes = null)
+    public function __construct($gameType = null)
     {
-        if ($gameTypes == null)
+        $this->Players = new Collection();
+
+        if ($gameType == null)
         {
             return $this;
         }
 
-        $this->SetGameTypes($gameTypes);
+        $this->SetGameType($gameType);
         parent::__construct();
 
         return $this;
     }
 
-    /**
-     * @return Collection
-     */
-    public function GetGameTypes() : Collection
+    /** @return GameType */
+    public function GetGameType(): GameType
     {
-        return $this->GameTypes;
+        return $this->GameType;
     }
 
     /**
-     * @param Collection $gameTypes
-     * @return NewGameViewModel
+     * @param GameType $gameType
+     * @return IGameSetupViewModel
      */
-    public function SetGameTypes($gameTypes) :NewGameViewModel
+    public function SetGameType(GameType $gameType): IGameSetupViewModel
     {
-        $this->GameTypes = $gameTypes;
+        $this->GameType = $gameType;
+        return $this;
+    }
+
+    /** @return int */
+    public function GetLocalPlayerCount(): int
+    {
+        return $this->LocalPlayerCount;
+    }
+
+    /**
+     * @param int $count
+     * @return IGameSetupViewModel
+     */
+    public function SetLocalPlayerCount(int $count): IGameSetupViewModel
+    {
+        $this->LocalPlayerCount = $count;
+        return $this;
+    }
+
+    /** @return Collection */
+    public function GetPlayers(): Collection
+    {
+        return $this->Players;
+    }
+
+    /**
+     * @param Collection $players
+     * @return IGameSetupViewModel
+     */
+    public function SetPlayers(Collection $players): IGameSetupViewModel
+    {
+        $this->Players = $players;
+        return $this;
+    }
+
+    /**
+     * @param Player $player
+     * @return IGameSetupViewModel
+     */
+    public function AddPlayer(Player $player): IGameSetupViewModel
+    {
+        $this->Players->push($player);
         return $this;
     }
 }

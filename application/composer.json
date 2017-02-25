@@ -11,9 +11,9 @@
 		"source": "https://github.com/bcit-ci/CodeIgniter"
 	},
 	"require": {
-		"php": ">=7.0.0",
-		"doctrine/orm": "2.4.0-RC2",
-		"tightenco/collect": "v5.4.12"
+		"php": ">=7.1.0",
+		"tightenco/collect": "v5.4.12",
+		"ramsey/uuid-doctrine": "1.2.0"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

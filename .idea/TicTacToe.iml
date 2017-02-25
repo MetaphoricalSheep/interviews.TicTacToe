@@ -10,10 +10,14 @@
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/doctrine/common" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/doctrine/dbal" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/doctrine/lexer" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/doctrine/orm" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/mikey179/vfsStream" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/ramsey/uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/ramsey/uuid-doctrine" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/symfony/debug" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/symfony/polyfill-mbstring" />
@@ -47,5 +51,51 @@
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="tether" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="module-library">
+      <library name="PHP" type="php">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/application/vendor/composer" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/annotations" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/cache" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/collections" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/common" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/dbal" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/inflector" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/instantiator" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/lexer" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/orm" />
+          <root url="file://$MODULE_DIR$/application/vendor/mikey179/vfsStream" />
+          <root url="file://$MODULE_DIR$/application/vendor/paragonie/random_compat" />
+          <root url="file://$MODULE_DIR$/application/vendor/psr/log" />
+          <root url="file://$MODULE_DIR$/application/vendor/ramsey/uuid" />
+          <root url="file://$MODULE_DIR$/application/vendor/ramsey/uuid-doctrine" />
+          <root url="file://$MODULE_DIR$/application/vendor/symfony/console" />
+          <root url="file://$MODULE_DIR$/application/vendor/symfony/debug" />
+          <root url="file://$MODULE_DIR$/application/vendor/symfony/polyfill-mbstring" />
+          <root url="file://$MODULE_DIR$/application/vendor/tightenco/collect" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/application/vendor/composer" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/annotations" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/cache" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/collections" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/common" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/dbal" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/inflector" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/instantiator" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/lexer" />
+          <root url="file://$MODULE_DIR$/application/vendor/doctrine/orm" />
+          <root url="file://$MODULE_DIR$/application/vendor/mikey179/vfsStream" />
+          <root url="file://$MODULE_DIR$/application/vendor/paragonie/random_compat" />
+          <root url="file://$MODULE_DIR$/application/vendor/psr/log" />
+          <root url="file://$MODULE_DIR$/application/vendor/ramsey/uuid" />
+          <root url="file://$MODULE_DIR$/application/vendor/ramsey/uuid-doctrine" />
+          <root url="file://$MODULE_DIR$/application/vendor/symfony/console" />
+          <root url="file://$MODULE_DIR$/application/vendor/symfony/debug" />
+          <root url="file://$MODULE_DIR$/application/vendor/symfony/polyfill-mbstring" />
+          <root url="file://$MODULE_DIR$/application/vendor/tightenco/collect" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

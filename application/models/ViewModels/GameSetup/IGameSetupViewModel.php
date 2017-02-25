@@ -10,17 +10,41 @@ namespace models\ViewModels\GameSetup;
 
 
 use Illuminate\Support\Collection;
+use models\Entities\GameType;
+use models\Entities\Player;
 
 interface IGameSetupViewModel
 {
-    /**
-     * @return Collection
-     */
-    public function GetGameTypes() : Collection;
+    /** @return GameType */
+    public function GetGameType() : GameType;
 
     /**
-     * @param Collection $gameTypes
-     * @return INewGameViewModel
+     * @param GameType $gameType
+     * @return IGameSetupViewModel
      */
-    public function SetGameTypes($gameTypes) : INewGameViewModel;
+    public function SetGameType(GameType $gameType) : IGameSetupViewModel;
+
+    /** @return int */
+    public function GetLocalPlayerCount() : int;
+
+    /**
+     * @param int $count
+     * @return IGameSetupViewModel
+     */
+    public function SetLocalPlayerCount(int $count) : IGameSetupViewModel;
+
+    /** @return Collection */
+    public function GetPlayers() : Collection;
+
+    /**
+     * @param Collection $players
+     * @return IGameSetupViewModel
+     */
+    public function SetPlayers(Collection $players) : IGameSetupViewModel;
+
+    /**
+     * @param Player $player
+     * @return IGameSetupViewModel
+     */
+    public function AddPlayer(Player $player) : IGameSetupViewModel;
 }

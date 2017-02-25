@@ -1,33 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-/** @var models\ViewModels\NewGame\IGameSetupViewModel $viewModel */
+/** @var models\ViewModels\GameSetup\IGameSetupViewModel $viewModel */
 ?><div class="container-fluid NewGame">
     <div>
         <h1>Tic Tac Toe</h1>
-        <h2>New Game</h2>
+        <h2>Game Setup</h2>
     </div>
 
     <div class="row justify-content-center">
+        <?php
+        $players = $viewModel->GetPlayers();
+
+        for ($count = 1; $count <= $viewModel->GetLocalPlayerCount(); $count++)
+        {?>
         <div class="col">
-            <div class="menu">
-                <?php
-                $gameTypes = $viewModel->GetGameTypes();
-                $gameTypes->each(function($item) {
-                    /** @var \models\Entities\GameType $item */
-                    echo anchor('#', $item->GetLabel(), [
-                        'class' => sprintf('item item-%s %s', $item->GetId(), ($item->GetId() == 1) ? 'active' : ''),
-                        'data-id' => $item->GetId(),
-                        'data-controller' => $item->GetStartUrl(),
-                        'data-start-label' => $item->GetStartLabel(),
-                    ]);
-                });
-
-                /** @var \models\Entities\GameType $first */
-                $first = $gameTypes->first();
-
-                echo anchor(sprintf('/game-setup/%s', $first->GetId()), $first->GetStartLabel(), ['class' => 'start']);
-                ?>
-            </div>
+            <h3>Player <?=$count?></h3>
         </div>
+        <?php } ?>
     </div>
 </div>

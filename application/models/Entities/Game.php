@@ -9,11 +9,14 @@
 namespace models\Entities;
 
 use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\CustomIdGenerator;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use libraries\traits\Timestampable;
+use Ramsey\Uuid\Uuid;
 
 
 /**
@@ -27,8 +30,11 @@ class Game
     use Timestampable;
 
     /**
-     * @var integer
-     * @Id @Column(type="integer") @GeneratedValue
+     * @var Uuid
+     * @Id
+     * @Column(type="uuid")
+     * @GeneratedValue(strategy="CUSTOM")
+     * @CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      **/
     protected $Id;
 
@@ -57,9 +63,16 @@ class Game
     protected $DateEnded;
 
     /**
-     * @return int
+     * @var GameType
+     * @ManyToOne(targetEntity="GameType")
+     * @JoinColumn(name="GameTypeId", referencedColumnName="Id", nullable=false)
      */
-    public function GetId() : int
+    protected $GameType;
+
+    /**
+     * @return Uuid
+     */
+    public function GetId() : Uuid
     {
         return $this->Id;
     }
@@ -118,6 +131,38 @@ class Game
     {
         $player->AddToWins($this);
         $this->Winner = $player;
+        return $this;
+    }
+
+    /** @return \DateTime */
+    public function GetDateEnded() : \DateTime
+    {
+        return $this->DateEnded;
+    }
+
+    /**
+     * @param \DateTime $date
+     * @return Game
+     */
+    public function SetDateEnded(\DateTime $date) : Game
+    {
+        $this->DateEnded = $date;
+        return $this;
+    }
+
+    /** @return GameType */
+    public function GetGameType() : GameType
+    {
+        return $this->GameType;
+    }
+
+    /**
+     * @param GameType $gameType
+     * @return Game
+     */
+    public function SetGameType(GameType $gameType) : Game
+    {
+        $this->GameType = $gameType;
         return $this;
     }
 }

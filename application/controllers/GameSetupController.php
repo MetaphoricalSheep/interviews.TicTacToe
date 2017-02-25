@@ -6,7 +6,7 @@
  * Time: 11:05 PM
  */
 
-use models\ViewModels\NewGame\NewGameViewModel;
+use models\ViewModels\GameSetup\GameSetupViewModel;
 
 /**
  * Class NewGameController
@@ -20,12 +20,10 @@ class GameSetupController extends CI_Controller
     public function index(int $gameType)
     {
         $em = $this->doctrine->GetEntityManager();
-        $viewModel = new NewGameViewModel($em->getRepository('models\Entities\GameType')->findAll());
+        $viewModel = new GameSetupViewModel($em->getRepository('models\Entities\GameType')->find($gameType));
         $viewModel
-            ->SetTitle('Tic Tac Toe - New Game')
-            ->SetView('newgame');
-        $data = ['viewModel' => $viewModel];
-
-        $this->load->view('master', $data);
+            ->SetTitle('Tic Tac Toe - Game Setup')
+            ->SetView('gamesetup');
+        $this->load->view('master', ['viewModel' => $viewModel]);
     }
 }
