@@ -13,7 +13,8 @@
 	"require": {
 		"php": ">=7.1.0",
 		"tightenco/collect": "v5.4.12",
-		"ramsey/uuid-doctrine": "1.2.0"
+		"ramsey/uuid-doctrine": "1.2.0",
+		"moontoast/math": "1.1.2"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

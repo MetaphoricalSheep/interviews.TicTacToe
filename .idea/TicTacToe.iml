@@ -14,6 +14,7 @@
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/doctrine/lexer" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/doctrine/orm" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/mikey179/vfsStream" />
+      <excludeFolder url="file://$MODULE_DIR$/application/vendor/moontoast/math" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/application/vendor/ramsey/uuid" />
@@ -65,6 +66,7 @@
           <root url="file://$MODULE_DIR$/application/vendor/doctrine/lexer" />
           <root url="file://$MODULE_DIR$/application/vendor/doctrine/orm" />
           <root url="file://$MODULE_DIR$/application/vendor/mikey179/vfsStream" />
+          <root url="file://$MODULE_DIR$/application/vendor/moontoast/math" />
           <root url="file://$MODULE_DIR$/application/vendor/paragonie/random_compat" />
           <root url="file://$MODULE_DIR$/application/vendor/psr/log" />
           <root url="file://$MODULE_DIR$/application/vendor/ramsey/uuid" />
@@ -86,6 +88,7 @@
           <root url="file://$MODULE_DIR$/application/vendor/doctrine/lexer" />
           <root url="file://$MODULE_DIR$/application/vendor/doctrine/orm" />
           <root url="file://$MODULE_DIR$/application/vendor/mikey179/vfsStream" />
+          <root url="file://$MODULE_DIR$/application/vendor/moontoast/math" />
           <root url="file://$MODULE_DIR$/application/vendor/paragonie/random_compat" />
           <root url="file://$MODULE_DIR$/application/vendor/psr/log" />
           <root url="file://$MODULE_DIR$/application/vendor/ramsey/uuid" />

@@ -11,6 +11,7 @@ $this->load->helper('url');
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/css/tether-theme-arrows-dark.min.css">
         <link rel="stylesheet" href="<?=base_url('/css/bootstrap.slate.min.css')?>">
         <link rel="stylesheet" href="<?=base_url('/css/style.css')?>">
+        <?php $viewModel->LoadCss(); ?>
     </head>
     <body>
         <?php $this->load->view($viewModel->GetView(), ["viewModel" => $viewModel])?>

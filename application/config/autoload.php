@@ -142,7 +142,7 @@ spl_autoload_extensions('.php'); // Only Autoload PHP Files
 
 spl_autoload_register(function($class)
 {
-    if( strpos($class,'\\') !== false )
+    if ( strpos($class,'\\') !== false )
     {
         // Namespaced Classes
         $file = str_replace('\\','/',$class);
@@ -151,6 +151,7 @@ spl_autoload_register(function($class)
             $file = APPPATH.$file.'.php';
         }
 
-        require($file);
+        require $file;
     }
 });
+

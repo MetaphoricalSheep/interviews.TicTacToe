@@ -54,3 +54,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
 $route['new-game'] = 'NewGameController/index';
 $route['game-setup/(:num)'] = 'GameSetupController/index/$1';
+$route['game-setup/create-character/(:any)'] = 'GameSetupController/CreatePlayer/$1';

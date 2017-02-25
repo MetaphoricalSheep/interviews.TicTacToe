@@ -10,10 +10,13 @@ namespace models\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\CustomIdGenerator;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
 use libraries\traits\Timestampable;
+use Ramsey\Uuid\Uuid;
 
 
 /**
@@ -27,14 +30,17 @@ class Player
     use Timestampable;
 
     /**
-     * @var int
-     * @Id @Column(type="integer") @GeneratedValue
+     * @var Uuid
+     * @Id
+     * @Column(type="uuid")
+     * @GeneratedValue(strategy="CUSTOM")
+     * @CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      **/
     protected $Id;
 
     /**
      * @var string
-     * @Column(type="string", length=80, name="Email")
+     * @Column(type="string", length=80, name="Email", nullable=true)
      **/
     protected $Email;
 
@@ -70,9 +76,9 @@ class Player
     }
 
     /**
-     * @return int
+     * @return Uuid
      */
-    public function GetId() : int
+    public function GetId() : Uuid
     {
         return $this->Id;
     }

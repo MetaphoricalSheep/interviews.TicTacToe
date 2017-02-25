@@ -1,20 +1,3 @@
-.NewGame h1, h2 {
-    font-family: SouthPark, fantasy;
-    text-align: center;
-}
-
-.NewGame h1 {
-    font-size: 64px;
-    color: #EFD610;
-    margin-top: 50px;
-}
-
-.NewGame h2 {
-    font-size: 48px;
-    color: #AD1021;
-    margin-top: 25px;
-}
-
 .NewGame #player {
     /*width: 530px;
     height: 350px;*/

@@ -1,0 +1,51 @@
+.GameSetup .character {
+    margin-top: 50px;
+}
+
+.GameSetup .character form {
+    display: inline-flex;
+}
+
+.GameSetup .character .col-md {
+    max-width: 500px;
+}
+
+.GameSetup .character .character-name {
+    margin-top: 23px;
+}
+
+.GameSetup .buttons {
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.GameSetup .buttons div {
+    margin-top: 30px;
+}
+
+.GameSetup .start, .GameSetup .back {
+    padding: 15px 50px 10px;
+    text-decoration: none;
+}
+
+.GameSetup .start {
+    background-color: #77A836;
+}
+
+.GameSetup .back {
+    background-color: #AD1021;
+    padding: 15px 60px 10px;
+}
+
+.GameSetup .start:hover, .GameSetup a.back:hover {
+    transition: background-color .5s ease;
+    text-decoration: none;
+}
+
+.GameSetup .start:hover {
+    background-color: #F2640C;
+}
+
+.GameSetup a.back:hover {
+    background-color: #F2640C;
+}

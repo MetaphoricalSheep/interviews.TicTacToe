@@ -21,8 +21,7 @@ class NewGameController extends CI_Controller
         $viewModel
             ->SetTitle('Tic Tac Toe - New Game')
             ->SetView('newgame');
-        $data = ['viewModel' => $viewModel];
 
-        $this->load->view('master', $data);
+        $this->load->view('master', ['viewModel' => $viewModel]);
     }
 }

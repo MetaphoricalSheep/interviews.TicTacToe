@@ -1,18 +1,18 @@
 function NewGameMenu() {
-    var _items = [
+    let _items = [
         $(".NewGame .menu .item-1"),
         $(".NewGame .menu .item-2"),
         $(".NewGame .menu .item-3")
     ];
 
-    var _active = _items[0];
-    var _next = _items[1];
-    var _previous = _items[2];
-    var _start = $(".NewGame .menu .start");
+    let _active = _items[0];
+    let _next = _items[1];
+    let _previous = _items[2];
+    let _start = $(".NewGame .menu .start");
 
     this.MoveDown = function() {
         _active.removeClass("active");
-        var $oldActive = _active;
+        let $oldActive = _active;
         _next.addClass("active");
         _active = _next;
         _next = _previous;
@@ -22,7 +22,7 @@ function NewGameMenu() {
 
     this.MoveUp = function() {
         _active.removeClass("active");
-        var $oldActive = _active;
+        let $oldActive = _active;
         _previous.addClass("active");
         _active = _previous;
         _previous = _next;
@@ -34,8 +34,7 @@ function NewGameMenu() {
         _start[0].click();
     };
 
-    var _update = function() {
-        this.ActiveId = _active.data("id");
+    let _update = () => {
         _start.attr("href", "/game-setup/" + _active.data("id"));
         _start.text(_active.data("startLabel"));
     };

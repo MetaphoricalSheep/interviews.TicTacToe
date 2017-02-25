@@ -17,13 +17,13 @@ use models\ViewModels\BaseViewModel;
 class GameSetupViewModel extends BaseViewModel implements IGameSetupViewModel
 {
     /** @var GameType */
-    private $GameType;
+    private $_gameType;
 
     /** @var int */
-    private $LocalPlayerCount;
+    private $_localPlayerCount;
 
     /** @var Collection */
-    private $Players;
+    private $_players;
 
     /**
      * NewGameViewModel constructor.
@@ -31,7 +31,8 @@ class GameSetupViewModel extends BaseViewModel implements IGameSetupViewModel
      */
     public function __construct($gameType = null)
     {
-        $this->Players = new Collection();
+        $this->_players = new Collection();
+        parent::__construct();
 
         if ($gameType == null)
         {
@@ -39,7 +40,6 @@ class GameSetupViewModel extends BaseViewModel implements IGameSetupViewModel
         }
 
         $this->SetGameType($gameType);
-        parent::__construct();
 
         return $this;
     }
@@ -47,7 +47,7 @@ class GameSetupViewModel extends BaseViewModel implements IGameSetupViewModel
     /** @return GameType */
     public function GetGameType(): GameType
     {
-        return $this->GameType;
+        return $this->_gameType;
     }
 
     /**
@@ -56,14 +56,14 @@ class GameSetupViewModel extends BaseViewModel implements IGameSetupViewModel
      */
     public function SetGameType(GameType $gameType): IGameSetupViewModel
     {
-        $this->GameType = $gameType;
+        $this->_gameType = $gameType;
         return $this;
     }
 
     /** @return int */
     public function GetLocalPlayerCount(): int
     {
-        return $this->LocalPlayerCount;
+        return $this->_localPlayerCount;
     }
 
     /**
@@ -72,14 +72,14 @@ class GameSetupViewModel extends BaseViewModel implements IGameSetupViewModel
      */
     public function SetLocalPlayerCount(int $count): IGameSetupViewModel
     {
-        $this->LocalPlayerCount = $count;
+        $this->_localPlayerCount = $count;
         return $this;
     }
 
     /** @return Collection */
     public function GetPlayers(): Collection
     {
-        return $this->Players;
+        return $this->_players;
     }
 
     /**
@@ -88,7 +88,7 @@ class GameSetupViewModel extends BaseViewModel implements IGameSetupViewModel
      */
     public function SetPlayers(Collection $players): IGameSetupViewModel
     {
-        $this->Players = $players;
+        $this->_players = $players;
         return $this;
     }
 
@@ -98,7 +98,7 @@ class GameSetupViewModel extends BaseViewModel implements IGameSetupViewModel
      */
     public function AddPlayer(Player $player): IGameSetupViewModel
     {
-        $this->Players->push($player);
+        $this->_players->push($player);
         return $this;
     }
 }

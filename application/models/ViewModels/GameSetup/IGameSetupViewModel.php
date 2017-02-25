@@ -12,8 +12,9 @@ namespace models\ViewModels\GameSetup;
 use Illuminate\Support\Collection;
 use models\Entities\GameType;
 use models\Entities\Player;
+use models\ViewModels\IViewModel;
 
-interface IGameSetupViewModel
+interface IGameSetupViewModel extends IViewModel
 {
     /** @return GameType */
     public function GetGameType() : GameType;

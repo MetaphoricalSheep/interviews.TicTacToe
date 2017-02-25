@@ -55,7 +55,7 @@ class Game
     /**
      * @var Player
      * @ManyToOne(targetEntity="Player", inversedBy="GamesWon")
-     * @JoinColumn(name="WinnerId", referencedColumnName="Id", nullable=false)
+     * @JoinColumn(name="WinnerId", referencedColumnName="Id", nullable=true)
      **/
     protected $Winner;
 

@@ -14,15 +14,18 @@ use Illuminate\Support\Collection;
 class BaseViewModel implements IViewModel
 {
     /** @var string */
-    private $Title = "Tic Tac Toe";
+    private $_title = "Tic Tac Toe";
     /** @var string */
-    private $View = "";
+    private $_view = "";
     /** @var Collection  */
-    private $JavaScript;
+    private $_javaScript;
+    /** @var Collection  */
+    private $_css;
 
     public function __construct()
     {
-        $this->JavaScript = new Collection();
+        $this->_javaScript = new Collection();
+        $this->_css = new Collection();
     }
 
     /**
@@ -30,7 +33,7 @@ class BaseViewModel implements IViewModel
      */
     public function GetTitle() : string
     {
-        return $this->Title;
+        return $this->_title;
     }
 
     /**
@@ -39,14 +42,14 @@ class BaseViewModel implements IViewModel
      */
     public function SetTitle(string $title) : IViewModel
     {
-        $this->Title = $title;
+        $this->_title = $title;
         return $this;
     }
 
     /** @return string */
     public function GetView() : string
     {
-        return $this->View;
+        return $this->_view;
     }
 
     /**
@@ -55,9 +58,10 @@ class BaseViewModel implements IViewModel
      */
     public function SetView(string $path) : IViewModel
     {
-        $this->View = $path;
-
-        return $this->SetJavaScript($path);
+        $this->_view = $path;
+        $this->SetCss($path);
+        $this->SetJavaScript($path);
+        return $this;
     }
 
     /**
@@ -68,7 +72,7 @@ class BaseViewModel implements IViewModel
     {
         if (file_exists(APPPATH."../public/js/" . $path . ".js"))
         {
-            $this->JavaScript->push(sprintf('/js/%s.js', $path));
+            $this->_javaScript->push(sprintf('/js/%s.js', $path));
         }
 
         return $this;
@@ -77,14 +81,42 @@ class BaseViewModel implements IViewModel
     /** @return Collection */
     public function GetJavaScript() : Collection
     {
-        return $this->JavaScript;
+        return $this->_javaScript;
     }
 
     public function LoadJavaScript() : void
     {
-        $this->JavaScript->each(function($js)
+        $this->_javaScript->each(function($js)
         {
             echo sprintf('<script src="%s" type="application/javascript"></script>%s', $js, "\n");
+        });
+    }
+
+    /** @return Collection */
+    public function GetCss() : Collection
+    {
+        return $this->_css;
+    }
+
+    /**
+     * @param string $path
+     * @return IViewModel
+     */
+    public function SetCss(string $path) : IViewModel
+    {
+        if (file_exists(APPPATH."../public/css/" . $path . ".css"))
+        {
+            $this->_css->push(sprintf('/css/%s.css', $path));
+        }
+
+        return $this;
+    }
+
+    public function LoadCss() : void
+    {
+        $this->_css->each(function($css)
+        {
+            echo sprintf('<link rel="stylesheet" href="%s">%s', $css, "\n");
         });
     }
 }

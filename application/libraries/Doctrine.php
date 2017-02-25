@@ -11,7 +11,7 @@ use Doctrine\Common\ClassLoader,
 
 class Doctrine {
 
-    private $em = null;
+    private $_em = null;
 
     public function __construct()
     {
@@ -65,7 +65,7 @@ class Doctrine {
         );
 
         // Create EntityManager
-        $this->em = EntityManager::create($connectionOptions, $config);
+        $this->_em = EntityManager::create($connectionOptions, $config);
     }
 
     /**
@@ -73,6 +73,6 @@ class Doctrine {
      */
     public function GetEntityManager() : EntityManager
     {
-        return $this->em;
+        return $this->_em;
     }
 }

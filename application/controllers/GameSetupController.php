@@ -6,6 +6,8 @@
  * Time: 11:05 PM
  */
 
+use libraries\ApiLayer\GameApi;
+use libraries\ApiLayer\IGameApi;
 use models\ViewModels\GameSetup\GameSetupViewModel;
 
 /**
@@ -14,16 +16,39 @@ use models\ViewModels\GameSetup\GameSetupViewModel;
  */
 class GameSetupController extends CI_Controller
 {
-    /**
-     * @param int $gameType
-     */
-    public function index(int $gameType)
+    /** @var IGameApi GameApi  */
+    private $_gameApi;
+
+    public function __construct()
     {
-        $em = $this->doctrine->GetEntityManager();
-        $viewModel = new GameSetupViewModel($em->getRepository('models\Entities\GameType')->find($gameType));
+        parent::__construct();
+        $this->_gameApi = new GameApi($this->doctrine->GetEntityManager());
+    }
+
+    /**
+     * @param int $gameTypeId
+     */
+    public function index(int $gameTypeId)
+    {
+        $game = $this->_gameApi->InstantiateGame($gameTypeId);
+
+        $viewModel = new GameSetupViewModel();
+        $viewModel
+            ->SetLocalPlayerCount($game->GetLocalPlayerCount())
+            ->SetGameType($game->GetGameType())
+            ->SetJavaScript('character');
         $viewModel
             ->SetTitle('Tic Tac Toe - Game Setup')
             ->SetView('gamesetup');
+
         $this->load->view('master', ['viewModel' => $viewModel]);
+    }
+
+    /**
+     * @param string $name
+     */
+    public function CreatePlayer(string $name)
+    {
+        echo json_encode($this->_gameApi->CreatePlayer($name));
     }
 }
