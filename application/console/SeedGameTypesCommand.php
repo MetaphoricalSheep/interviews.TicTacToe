@@ -8,8 +8,6 @@
 
 namespace console;
 
-require APPPATH . 'models/Entities/GameType.php';
-
 use Doctrine\ORM\EntityManager;
 use models\Entities\GameType;
 use Symfony\Component\Console\Command\Command;
@@ -21,7 +19,7 @@ class SeedGameTypesCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('seed:GameTypes')
+            ->setName('seed:types')
             ->setDescription('This will create the seed data for the GameType table')
             ->setHelp(<<<EOT
 Run this command to  seed the GameType table.

@@ -6,10 +6,11 @@ define('APPPATH', __DIR__ . '/');
 define('BASEPATH', APPPATH . '/../system/');
 define('ENVIRONMENT', 'development');
 
+require APPPATH.'config/autoload.php';
 require APPPATH.'vendor/autoload.php';
 require APPPATH.'libraries/Doctrine.php';
 require APPPATH.'console/SeedGameTypesCommand.php';
-require APPPATH.'libraries/traits/Timestampable.php';
+require APPPATH.'console/SeedMarvinCommand.php';
 
 $doctrine = new Doctrine;
 $em = $doctrine->GetEntityManager();
@@ -23,7 +24,8 @@ $cli = new Application('tic.tac.toe-cli', 'v1.0');
 $cli->setCatchExceptions(true);
 $cli->setHelperSet($helperSet);
 $cli->addCommands([
-    new \console\SeedGameTypesCommand()
+    new \console\SeedGameTypesCommand(),
+    new \console\SeedMarvinCommand()
 ]);
 
 $cli->run();

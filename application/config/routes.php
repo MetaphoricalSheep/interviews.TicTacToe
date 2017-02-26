@@ -55,3 +55,5 @@ $route['translate_uri_dashes'] = false;
 $route['new-game'] = 'NewGameController/index';
 $route['game-setup/(:num)'] = 'GameSetupController/index/$1';
 $route['game-setup/create-character/(:any)'] = 'GameSetupController/CreatePlayer/$1';
+$route['game-setup/create-game'] = 'GameSetupController/CreateGame';
+$route['play/(:any)'] = 'PlayController/index/$1';

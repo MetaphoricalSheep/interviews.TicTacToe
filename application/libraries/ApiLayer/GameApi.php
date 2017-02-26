@@ -10,8 +10,10 @@ namespace libraries\ApiLayer;
 
 
 use Doctrine\ORM\EntityManager;
+use libraries\TicTacToe\exceptions\GameNotFoundException;
 use models\Entities\GameType;
-use models\Entities\Player;
+use models\Entities as Entities;
+use models\Player;
 use models\Game;
 
 class GameApi implements IGameApi
@@ -45,16 +47,67 @@ class GameApi implements IGameApi
      */
     public function CreatePlayer(string $name) : Player
     {
-        $player = $this->_em->getRepository('models\Entities\Player')->findBy(['CharacterName' => $name]);
+        $dbPlayer = $this->_em->getRepository('models\Entities\Player')->findOneBy(['CharacterName' => $name]);
 
-        if ($player == null)
+        if ($dbPlayer == null)
         {
-            $player = new Player();
-            $player->SetCharacterName($name);
-            $this->_em->persist($player);
+            $dbPlayer = new Entities\Player();
+            $dbPlayer->SetCharacterName($name);
+            $this->_em->persist($dbPlayer);
             $this->_em->flush();
         }
 
-        return $player;
+        return new Player($dbPlayer);
+    }
+
+    /**
+     * @param array $players
+     * @param string $id
+     * @return string
+     */
+    public function CreateGame(array $players, string $id): string
+    {
+        $em = $this->_em;
+        /** @var \models\Entities\Player $player1 */
+        $player1 = $em->getRepository('models\Entities\Player')->find($players[0]);
+        /** @var \models\Entities\Player $player2 */
+        $player2 = $em->getRepository('models\Entities\Player')->find($players[1]);
+        /** @var \models\Entities\GameType $type */
+        $type = $em->getRepository('models\Entities\GameType')->find($id);
+
+        $game = new Entities\Game();
+        $game
+            ->SetPlayer1($player1)
+            ->SetPlayer2($player2)
+            ->SetGameType($type);
+
+        try
+        {
+            $em->persist($game);
+            $em->flush();
+
+            return $game->GetId();
+        }
+        catch (\Exception $e)
+        {
+            return "";
+        }
+    }
+
+    /**
+     * @param string $id
+     * @return Game
+     * @throws GameNotFoundException
+     */
+    public function GetGame(string $id) : Game
+    {
+        $dbGame = $this->_em->getRepository('models\Entities\Game')->find($id);
+
+        if ($dbGame == null)
+        {
+            throw new GameNotFoundException($id);
+        }
+
+        return new Game($dbGame);
     }
 }

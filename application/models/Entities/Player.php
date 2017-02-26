@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\Table;
 use libraries\traits\Timestampable;
 use Ramsey\Uuid\Uuid;
 
@@ -23,7 +24,8 @@ use Ramsey\Uuid\Uuid;
  * Class Player
  * @package models\Entities
  *
- * @Entity(repositoryClass="models\Repositories\PlayerRepository") @Table(name="Player")
+ * @Entity(repositoryClass="models\Repositories\PlayerRepository")
+ * @Table(name="Player")
  */
 class Player
 {
@@ -64,7 +66,7 @@ class Player
 
     /**
      * @var ArrayCollection
-     * @OneToMany(targetEntity="Game", mappedBy="GamesWon")
+     * @OneToMany(targetEntity="Game", mappedBy="Winner")
      **/
     protected $GamesWon;
 

@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\Table;
 use libraries\traits\Timestampable;
 use Ramsey\Uuid\Uuid;
 
@@ -23,7 +24,8 @@ use Ramsey\Uuid\Uuid;
  * Class Game
  * @package model\Entities
  *
- * @Entity(repositoryClass="models\Repositories\GameRepository") @Table(name="Game")
+ * @Entity(repositoryClass="models\Repositories\GameRepository")
+ * @Table(name="Game")
  */
 class Game
 {
@@ -116,9 +118,9 @@ class Game
     }
 
     /**
-     * @return Player
+     * @return null|Player
      */
-    public function GetWinner() : Player
+    public function GetWinner() : ?Player
     {
         return $this->Winner;
     }
@@ -134,8 +136,8 @@ class Game
         return $this;
     }
 
-    /** @return \DateTime */
-    public function GetDateEnded() : \DateTime
+    /** @return null|\DateTime */
+    public function GetDateEnded() : ?\DateTime
     {
         return $this->DateEnded;
     }

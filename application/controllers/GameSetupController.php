@@ -8,6 +8,7 @@
 
 use libraries\ApiLayer\GameApi;
 use libraries\ApiLayer\IGameApi;
+use libraries\AjaxResponse;
 use models\ViewModels\GameSetup\GameSetupViewModel;
 
 /**
@@ -36,7 +37,8 @@ class GameSetupController extends CI_Controller
         $viewModel
             ->SetLocalPlayerCount($game->GetLocalPlayerCount())
             ->SetGameType($game->GetGameType())
-            ->SetJavaScript('character');
+            ->SetJavaScript('character')
+            ->SetJavaScript('game');
         $viewModel
             ->SetTitle('Tic Tac Toe - Game Setup')
             ->SetView('gamesetup');
@@ -49,6 +51,32 @@ class GameSetupController extends CI_Controller
      */
     public function CreatePlayer(string $name)
     {
-        echo json_encode($this->_gameApi->CreatePlayer($name));
+        $response = new AjaxResponse(true);
+        $response->SetData($this->_gameApi->CreatePlayer($name));
+        $response->ReturnResult();
+    }
+
+    public function CreateGame()
+    {
+        $playerIds = $this->input->post('players');
+        $gameTypeId = $this->input->post('gameType');
+
+        $gameId = $this->_gameApi->CreateGame($playerIds, $gameTypeId);
+        $response = new AjaxResponse(true);
+
+        if ($gameId == "")
+        {
+            $response
+                ->SetSuccess(false)
+                ->SetError("Could not create game.")
+                ->SetData([])
+                ->ReturnResult();
+            return false;
+        }
+
+        $response
+            ->SetData(["gameid" => $gameId])
+            ->ReturnResult();
+        return true;
     }
 }

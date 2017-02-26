@@ -10,7 +10,7 @@ function NewGameMenu() {
     let _previous = _items[2];
     let _start = $(".NewGame .menu .start");
 
-    this.MoveDown = function() {
+    this.MoveDown = () => {
         _active.removeClass("active");
         let $oldActive = _active;
         _next.addClass("active");
@@ -20,7 +20,7 @@ function NewGameMenu() {
         _update();
     };
 
-    this.MoveUp = function() {
+    this.MoveUp = () => {
         _active.removeClass("active");
         let $oldActive = _active;
         _previous.addClass("active");
@@ -30,7 +30,7 @@ function NewGameMenu() {
         _update();
     };
 
-    this.Start = function() {
+    this.Start = () => {
         _start[0].click();
     };
 
@@ -44,7 +44,7 @@ function NewGameMenu() {
 
 menu = new NewGameMenu();
 
-$(document).keydown(function (key) {
+$(document).keydown((key) => {
     switch (key.which) {
         case 13: // enter
             menu.Start();

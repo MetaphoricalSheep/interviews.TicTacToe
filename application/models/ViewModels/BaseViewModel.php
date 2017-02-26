@@ -21,11 +21,14 @@ class BaseViewModel implements IViewModel
     private $_javaScript;
     /** @var Collection  */
     private $_css;
+    /** @var  Collection */
+    private $_partials;
 
     public function __construct()
     {
         $this->_javaScript = new Collection();
         $this->_css = new Collection();
+        $this->_partials = new Collection();
     }
 
     /**
@@ -118,5 +121,27 @@ class BaseViewModel implements IViewModel
         {
             echo sprintf('<link rel="stylesheet" href="%s">%s', $css, "\n");
         });
+    }
+
+    /**
+     * @param string $path
+     * @return IViewModel
+     */
+    public function SetPartial(string $path): IViewModel
+    {
+        $this->_partials->push($path);
+        $this->SetCss($path);
+        $this->SetJavaScript($path);
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @return null|string
+     */
+    public function GetPartial(string $name): ?string
+    {
+        $id = $this->_partials->search($name);
+        return ($id !== false) ? $this->_partials->get($id) : null;
     }
 }

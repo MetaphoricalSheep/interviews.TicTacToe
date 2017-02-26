@@ -9,7 +9,7 @@ $this->load->helper('form');
         <h3><?=$viewModel->GetGameType()->GetLabel()?></h3>
     </div>
 
-    <div class="row justify-content-md-center character">
+    <div class="row justify-content-md-center character" data-game-type-id="<?=$viewModel->GetGameType()->GetId()?>">
         <?php
         $players = $viewModel->GetPlayers();
 

@@ -3,7 +3,7 @@
 namespace libraries\ApiLayer;
 
 
-use models\Entities\Player;
+use models\Player;
 use models\Game;
 
 interface IGameApi
@@ -19,4 +19,17 @@ interface IGameApi
      * @return Player
      */
     public function CreatePlayer(string $name) : Player;
+
+    /**
+     * @param array $players
+     * @param string $id
+     * @return string
+     */
+    public function CreateGame(array $players, string $id) : string;
+
+    /**
+     * @param string $id
+     * @return Game
+     */
+    public function GetGame(string $id) : Game;
 }

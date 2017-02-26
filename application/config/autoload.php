@@ -60,6 +60,7 @@ $autoload['packages'] = array();
 */
 $autoload['libraries'] = [
     'Doctrine',
+    'Serializer',
 ];
 
 /*

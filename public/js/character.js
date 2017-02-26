@@ -1,31 +1,31 @@
 function Character() {
-    let _id, _name;
+    this.Id = "";
+    this.CharacterName = "";
 
     this.SetId = (id) => {
-        _id = id;
+        this.Id = id;
         return this;
     };
-
-    this.GetId = () => { return _id };
 
     this.SetName = (name) => {
-        _name = name;
+        this.CharacterName = name;
         return this;
     };
 
-    this.GetName = () => { return _name };
     return this;
 }
 
-function Characters() {
+function Characters(gameTypeId = 1) {
     let _names = $(".GameSetup .character .character-name");
     let _characters = [];
+    let _expectedPlayerCount = 2;
+    let _gameTypeId = gameTypeId;
 
     this.Create = () => {
         _names.each((i, e) => {
-            let name = $(e).val();
+            let name = $(e).val().trim();
 
-            if (name.trim() === "") {
+            if (name === "") {
                 alert("Please enter a valid character name!");
                 return false;
             }
@@ -35,17 +35,18 @@ function Characters() {
                 return false;
             }
 
-            if (this.FindByName(name) === false) {
-                let response = _createCharacter(name);
-
-                if (response !== true) {
-                    alert(response);
-                    return false;
-                }
+            if (name === "Marvin") {
+                alert("Marvin: Do you want me to sit in a corner and rust or just fall apart where I'm standing?");
+                return false;
             }
-        });
 
-        //proceed
+            if (this.FindByName(name) !== false) {
+                alert(name + "!!1! You can't play against yourself...")
+                return false;
+            }
+
+            _createCharacter(name);
+        });
     };
 
     let _createCharacter = (name) => {
@@ -54,19 +55,29 @@ function Characters() {
             url: "/game-setup/create-character/" + name,
             dataType: "json",
             success: (response) => {
-                if (response.success) {
-                    let char = new Character().SetId(response.id).SetName(response.name);
-                    this.Characters.add(char);
-                    return true;
+                if (response.success === false)
+                {
+                    alert(response.error);
+                    return false;
                 }
 
-                return response.error();
+                let char = new Character().SetId(response.data._id).SetName(response.data._name);
+                _characters.push(char);
+
+                if (_characters.length == _expectedPlayerCount)
+                {
+                    new Game()
+                        .AddPlayer(_characters[0].Id)
+                        .AddPlayer(_characters[1].Id)
+                        .SetGameTypeId(_gameTypeId)
+                        .Create();
+                }
             }
         });
     };
 
     this.FindByName = (name) => {
-        let result = $.grep(_characters, (c) => { return c.name === name });
+        let result = $.grep(_characters, (c) => { return c.CharacterName.toLocaleLowerCase() === name.toLowerCase() });
         if (result.length === 0) {
             return false;
         }
@@ -74,13 +85,17 @@ function Characters() {
     };
 
     this.FindById = (id) => {
-        let result = $.grep(_characters, (c) => { return c.id === id });
+        let result = $.grep(_characters, (c) => { return c.Id === id });
         if (result.length === 0) {
             return false;
         }
         return result[0]
     };
 
-    this.ReturnAll = () => { return _characters }
+    this.ReturnAll = () => { return _characters };
+
+    if (_gameTypeId == 1) {
+        _createCharacter("Marvin");
+    }
 }
 

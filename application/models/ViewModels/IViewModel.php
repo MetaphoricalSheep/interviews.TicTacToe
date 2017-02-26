@@ -41,4 +41,27 @@ interface IViewModel
     public function SetJavaScript(string $path) : IViewModel;
 
     public function LoadJavaScript() : void;
+
+    /** @return Collection */
+    public function GetCss() : Collection;
+
+    /**
+     * @param string $path
+     * @return IViewModel
+     */
+    public function SetCss(string $path) : IViewModel;
+
+    public function LoadCss() : void;
+
+    /**
+     * @param string $path
+     * @return IViewModel
+     */
+    public function SetPartial(string $path) : IViewModel;
+
+    /**
+     * @param null|string $path
+     * @return string
+     */
+    public function GetPartial(string $path) : ?string;
 }
