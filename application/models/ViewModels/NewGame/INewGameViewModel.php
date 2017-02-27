@@ -10,8 +10,9 @@ namespace models\ViewModels\NewGame;
 
 
 use Illuminate\Support\Collection;
+use models\ViewModels\IViewModel;
 
-interface INewGameViewModel
+interface INewGameViewModel extends IViewModel
 {
     /**
      * @return Collection

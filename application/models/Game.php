@@ -46,6 +46,15 @@ class Game
     /** @var array  */
     private $_board = ["", "", "", "", "", "", "", "", ""];
 
+    /** @var int  */
+    private $_round = 1;
+
+    /** @var int */
+    private $_state = 0;
+
+    /** @var int */
+    private $_turn = 1;
+
     /**
      * Game constructor.
      * @param Entities\Game|null $game
@@ -57,14 +66,19 @@ class Game
         if ($game != null)
         {
             $this->_id = $game->GetId();
-            $this->_player1 = $game->GetPlayer1();
-            $this->_player2 = $game->GetPlayer2();
-            $this->_winner = $game->GetWinner();
-            $this->_startDate = $game->GetDateCreated();
-            $this->_dateCreated = $game->GetDateEnded();
-            $this->_gameType = $game->GetGameType();
-            $this->_board = $game->GetState()->GetBoard();
-            $this->SetLocalPlayerCount($game->GetGameType());
+
+            $this
+                ->SetPlayer1($game->GetPlayer1())
+                ->SetPlayer2($game->GetPlayer2())
+                ->SetWinner($game->GetWinner())
+                ->SetStartDate($game->GetDateCreated())
+                ->SetEndDate($game->GetDateEnded())
+                ->SetGameType($game->GetGameType())
+                ->SetBoard($game->GetState()->GetBoard())
+                ->SetRound($game->GetState()->GetRound())
+                ->SetState($game->GetState()->GetState())
+                ->SetTurn($game->GetState()->GetTurn())
+                ->SetLocalPlayerCount($game->GetGameType());
         }
     }
 
@@ -185,4 +199,95 @@ class Game
         $this->_board = $board;
         return $this;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function GetStartDate() : \DateTime
+    {
+        return $this->_startDate;
+    }
+
+    /**
+     * @param \DateTime $date
+     * @return Game
+     */
+    public function SetStartDate(\DateTime $date) : Game
+    {
+        $this->_startDate = $date;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function GetEndDate() : \DateTime
+    {
+        return $this->_endDate;
+    }
+
+    /**
+     * @param \DateTime $date
+     * @return Game
+     */
+    public function SetEndDate(\DateTime $date) : Game
+    {
+        $this->_endDate = $date;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function GetState() : int
+    {
+        return $this->_state;
+    }
+
+    /**
+     * @param int $state
+     * @return Game
+     */
+    public function SetState(int $state) : Game
+    {
+        $this->_state = $state;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function GetRound() : int
+    {
+        return $this->_round;
+    }
+
+    /**
+     * @param int $round
+     * @return Game
+     */
+    public function SetRound(int $round) : Game
+    {
+        $this->_round = $round;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function GetTurn() : int
+    {
+        return $this->_turn;
+    }
+
+    /**
+     * @param int $turn
+     * @return Game
+     */
+    public function SetTurn(int $turn) : Game
+    {
+        $this->_turn = $turn;
+        return $this;
+    }
+
 }

@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $gameTypes = $viewModel->GetGameTypes();
                     $gameTypes->each(function($item) {
                         /** @var \models\Entities\GameType $item */
-                        echo anchor('#', $item->GetLabel(), [
+                        echo anchor(sprintf('/game-setup/%s', $item->GetId()), $item->GetLabel(), [
                             'class' => sprintf('item item-%s %s', $item->GetId(), ($item->GetId() == 1) ? 'active' : ''),
                             'data-id' => $item->GetId(),
                             'data-controller' => $item->GetStartUrl(),
