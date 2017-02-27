@@ -1,0 +1,27 @@
+.Play .board {
+    margin-top: 80px;
+}
+
+.Play .buttons {
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.Play .buttons div {
+    margin-top: 30px;
+}
+
+.Play .new, .Play .rematch {
+    padding: 15px 50px 10px;
+    text-decoration: none;
+}
+
+.Play .new {
+    background-color: #77A836;
+}
+
+.Play .rematch {
+    background-color: #AD1021;
+    padding: 17px 55px 12px;
+}
+

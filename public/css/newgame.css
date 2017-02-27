@@ -1,0 +1,96 @@
+.NewGame #player {
+    /*width: 530px;
+    height: 350px;*/
+    border: solid 4px #A85400;
+    border-radius: 15px;
+    text-align: center;
+    margin: 80px auto auto;
+    color: #191B1F;
+    background: #C9A33D;
+}
+
+.NewGame #player .img {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-right: solid 2px #B2581C;
+}
+
+.NewGame #class {
+    font-size: 24px;
+    margin-top: 25px;
+}
+
+.NewGame #name {
+    font-size: 34px;
+    margin-top: 12px;
+}
+
+.NewGame .mastery {
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+.NewGame .mastery-border {
+    background: #191B1F;
+    height:2px;
+    margin-top: 8px;
+}
+
+.NewGame .menu {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 80px;
+}
+
+.NewGame .menu .item {
+    padding-top: 35px;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+}
+
+.NewGame .menu a.item:hover {
+    text-decoration: none;
+}
+
+.NewGame .menu .item.active {
+    color: #D6B58C !important;
+}
+
+.NewGame .menu .item.active:before {
+    font-weight:bold;
+    color: #EFD610;
+    content: "> ";
+}
+
+.NewGame .menu .item.active:after {
+    font-weight:bold;
+    color: #EFD610;
+    content: " <";
+}
+
+.NewGame .menu .item.item-1 {
+    color: #77A836;
+}
+
+.NewGame .menu .item.item-2 {
+    color: #39ADC6;
+}
+
+.NewGame .menu .item.item-3 {
+    color: #F2640C;
+}
+
+.NewGame .menu .start {
+    background-color: #AD1021;
+    padding: 15px 50px 10px;
+    margin-top: 80px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.NewGame .menu a.start:hover {
+    transition: background-color .5s ease;
+    background-color: #F2640C;
+    text-decoration: none;
+}
