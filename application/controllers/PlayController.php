@@ -37,13 +37,15 @@ class PlayController extends CI_Controller
         $viewModel
             ->SetTitle('Tic Tac Toe - Game Setup')
             ->SetPartial('_resultsbar')
+            ->SetJavaScript('game')
             ->SetJavaScript('board')
             ->SetView('play');
         $viewModel
             ->SetGameId($gameId)
             ->SetPlayer1($game->GetPlayer1()->GetId())
             ->SetPlayer2($game->GetPlayer2()->GetId())
-            ->SetBoard($game->GetBoard());
+            ->SetBoard($game->GetBoard())
+            ->SetGameTypeId($game->GetGameType()->GetId());
 
         $this->load->view('master', ['viewModel' => $viewModel]);
     }

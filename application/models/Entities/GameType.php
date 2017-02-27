@@ -12,13 +12,15 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
 
 
 /**
  * Class GameType
  * @package models\Entities
  *
- * @Entity(repositoryClass="models\Repositories\GameTypeRepository") @Table(name="GameType")
+ * @Entity(repositoryClass="models\Repositories\GameTypeRepository")
+ * @Table(name="GameType")
  */
 class GameType
 {

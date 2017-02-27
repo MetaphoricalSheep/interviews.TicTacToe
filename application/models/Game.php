@@ -9,7 +9,7 @@
 namespace models;
 
 
-use Doctrine\ORM\EntityManager;
+use Illuminate\Support\Collection;
 use models\Entities\GameType;
 use models\Entities\Player;
 use Ramsey\Uuid\Uuid;
@@ -52,8 +52,8 @@ class Game
     /** @var int */
     private $_state = 0;
 
-    /** @var int */
-    private $_turn = 1;
+    /** @var string */
+    private $_turn = 'X';
 
     /**
      * Game constructor.
@@ -148,17 +148,17 @@ class Game
         return $this;
     }
 
-    /** @return Player */
-    public function GetWinner() : Player
+    /** @return null|Player */
+    public function GetWinner() : ?Player
     {
         return $this->_winner;
     }
 
     /**
-     * @param Player $player
+     * @param null|Player $player
      * @return Game
      */
-    public function SetWinner(Player $player) : Game
+    public function SetWinner(?Player $player) : Game
     {
         $this->_winner = $player;
         return $this;
@@ -219,18 +219,18 @@ class Game
     }
 
     /**
-     * @return \DateTime
+     * @return null|\DateTime
      */
-    public function GetEndDate() : \DateTime
+    public function GetEndDate() : ?\DateTime
     {
         return $this->_endDate;
     }
 
     /**
-     * @param \DateTime $date
+     * @param null|\DateTime $date
      * @return Game
      */
-    public function SetEndDate(\DateTime $date) : Game
+    public function SetEndDate(?\DateTime $date) : Game
     {
         $this->_endDate = $date;
         return $this;
@@ -273,21 +273,49 @@ class Game
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function GetTurn() : int
+    public function GetTurn() : string
     {
         return $this->_turn;
     }
 
     /**
-     * @param int $turn
+     * @param string $turn
      * @return Game
      */
-    public function SetTurn(int $turn) : Game
+    public function SetTurn(string $turn) : Game
     {
         $this->_turn = $turn;
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function toArray() : array
+    {
+        return [
+            'board' => $this->GetBoard(),
+            'state' => $this->GetState(),
+            'turn' => $this->GetTurn(),
+            'typeId' => $this->GetGameType()->GetId(),
+            'localPlayerCount' => $this->GetLocalPlayerCount(),
+            'endDate' => $this->GetEndDate(),
+            'player1' => $this->GetPlayer1()->GetId()->toString(),
+            'player2' => $this->GetPlayer2()->GetId()->toString(),
+            'round' => $this->GetRound(),
+            'startDate' => $this->GetStartDate(),
+            'winner' => ($this->GetWinner()) ? $this->GetWinner()->GetId()->toString() : null,
+            'gameId' => $this->_game->GetId()->toString()
+        ];
+    }
+
+    /**
+     * @return Collection
+     */
+    public function toCollection() : Collection
+    {
+        return new Collection($this->toArray());
+    }
 }

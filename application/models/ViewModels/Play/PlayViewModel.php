@@ -16,6 +16,9 @@ class PlayViewModel extends BaseViewModel implements IPlayViewModel
     /** @var string */
     private $_gameId;
 
+    /** @var int */
+    private $_gameTypeId;
+
     /** @var  string */
     private $_player1;
 
@@ -24,6 +27,9 @@ class PlayViewModel extends BaseViewModel implements IPlayViewModel
 
     /** @var  array */
     private $_board = ["", "", "", "", "", "", "", "", ""];
+
+    /** @var array  */
+    private $_history = [];
 
     /** @return string */
     public function GetGameId(): string
@@ -92,6 +98,24 @@ class PlayViewModel extends BaseViewModel implements IPlayViewModel
     public function SetBoard(array $board): IPlayViewModel
     {
         $this->_board = $board;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function GetGameTypeId(): int
+    {
+        return $this->_gameTypeId;
+    }
+
+    /**
+     * @param int $id
+     * @return IPlayViewModel
+     */
+    public function SetGameTypeId(int $id): IPlayViewModel
+    {
+        $this->_gameTypeId = $id;
         return $this;
     }
 }

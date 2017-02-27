@@ -2,6 +2,8 @@
 
 namespace models\Repositories;
 
+use Doctrine\Common\Collections\Criteria;
+
 /**
  * GameRepository
  *
@@ -10,4 +12,18 @@ namespace models\Repositories;
  */
 class GameRepository extends BaseRepository
 {
+    /**
+     * @param int $limit
+     * @return array
+     */
+    public function GetHistory(int $limit) : array
+    {
+        $qb = $this->createQueryBuilder('g');
+        $qb
+            ->where($qb->expr()->isNotNull('g.DateEnded'))
+            ->orderBy('g.DateEnded', 'DESC')
+            ->setMaxResults($limit);
+
+        return $qb->getQuery()->getResult();
+    }
 }

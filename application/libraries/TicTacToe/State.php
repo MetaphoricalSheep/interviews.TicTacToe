@@ -172,11 +172,6 @@ class State
      */
     public function TransitionState($position, $piece) : State
     {
-        if ($this->Round == 9)
-        {
-            return $this->State;
-        }
-
         $this->State = StateEnum::InProgress;
 
         $this->SetPosition($position);
@@ -257,6 +252,7 @@ class State
     private function DeclareDraw()
     {
         $this->State = StateEnum::Draw;
+        $this->AdvanceRound();
     }
 
     private function AdvanceRound()

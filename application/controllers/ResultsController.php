@@ -6,10 +6,10 @@
  * Time: 10:08 AM
  */
 
-namespace controllers;
 
-
+use libraries\AjaxResponse;
 use libraries\ApiLayer\GameApi;
+use libraries\ApiLayer\IGameApi;
 
 class ResultsController extends \CI_Controller
 {
@@ -22,7 +22,22 @@ class ResultsController extends \CI_Controller
         $this->_gameApi = new GameApi($this->doctrine->GetEntityManager());
     }
 
-    public function index() { }
+    public function index()
+    {
+        $games = $this->_gameApi->GetHistory(5);
+    }
+
+    /**
+     * @param int $limit
+     */
+    public function GetHistory(int $limit)
+    {
+        $games = $this->_gameApi->GetHistory($limit);
+
+        $response = new AjaxResponse(true);
+        $response->SetData($games);
+        $response->ReturnResult();
+    }
 
     /**
      * @param string $gameId
@@ -30,5 +45,9 @@ class ResultsController extends \CI_Controller
     public function GetBoard(string $gameId) : void
     {
         $game = $this->_gameApi->GetGame($gameId);
+
+        $response = new AjaxResponse(true);
+        $response->SetData($game->toArray());
+        $response->ReturnResult();
     }
 }

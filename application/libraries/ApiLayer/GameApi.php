@@ -10,6 +10,7 @@ namespace libraries\ApiLayer;
 
 
 use Doctrine\ORM\EntityManager;
+use Illuminate\Support\Collection;
 use libraries\TicTacToe\enums\StateEnum;
 use libraries\TicTacToe\exceptions\GameNotFoundException;
 use libraries\TicTacToe\TicTacToe;
@@ -17,6 +18,7 @@ use models\Entities\GameType;
 use models\Entities as Entities;
 use models\Player;
 use models\Game;
+use models\Repositories\GameRepository;
 
 class GameApi implements IGameApi
 {
@@ -152,6 +154,24 @@ class GameApi implements IGameApi
         $engine = new TicTacToe($game->GetState()->MapToEngine());
         $state = $game->GetState()->MapFromEngine($engine->Move($this->GetPos($x, $y), $piece));
 
+        switch ($state->GetState())
+        {
+            case StateEnum::Player1Wins:
+                $game->SetWinner($game->GetPlayer1());
+                $game->SetDateEnded(new \DateTime());
+                $this->_em->persist($game);
+                break;
+            case StateEnum::Player2Wins:
+                $game->SetWinner($game->GetPlayer2());
+                $game->SetDateEnded(new \DateTime());
+                $this->_em->persist($game);
+                break;
+            case StateEnum::Draw:
+                $game->SetDateEnded(new \DateTime());
+                $this->_em->persist($game);
+                break;
+        }
+
         $this->_em->persist($state);
         $this->_em->flush();
 
@@ -180,5 +200,25 @@ class GameApi implements IGameApi
             return 7;
         else
             return 8;
+    }
+
+    /**
+     * @param int $limit
+     * @return array
+     */
+    public function GetHistory(int $limit): array
+    {
+        /** @var GameRepository $repo */
+        $repo = $this->_em->getRepository('models\Entities\Game');
+        $results = $repo->GetHistory($limit);
+        $games = [];
+
+        foreach ($results as $dbGame)
+        {
+            $game = new Game($dbGame);
+            $games[] = $game->toArray();
+        }
+
+        return $games;
     }
 }

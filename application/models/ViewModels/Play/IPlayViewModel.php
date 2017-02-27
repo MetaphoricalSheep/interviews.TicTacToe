@@ -53,4 +53,15 @@ interface IPlayViewModel extends IViewModel
      * @return IPlayViewModel
      */
     public function SetBoard(array $board) : IPlayViewModel;
+
+    /**
+     * @return int
+     */
+    public function GetGameTypeId() : int;
+
+    /**
+     * @param int $id
+     * @return IPlayViewModel
+     */
+    public function SetGameTypeId(int $id) : IPlayViewModel;
 }

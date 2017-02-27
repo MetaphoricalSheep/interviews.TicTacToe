@@ -41,12 +41,9 @@ function Characters(gameTypeId = 1) {
                     return false;
                 }
 
-                if (this.FindByName(name) !== false) {
-                    alert(name + "!!1! You can't play against yourself...")
-                    return false;
+                if (this.FindByName(name) === false) {
+                    _createCharacter(name);
                 }
-
-                _createCharacter(name);
             });
         }
     };
