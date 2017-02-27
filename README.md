@@ -54,5 +54,9 @@ You will need the following properly installed on your computer.
 * The results page was a rush job. I missed it in the spec. Added it quickly as an afterthought. It needs refining.
 * Marvin (the AI) always plays on the most difficult level at the moment. I need to add different difficulty levels.
 * The history side bar hides on smaller screen sizes, but that is about the only thing that is currently responsive on this project.
+* There are no unit tests
+* Exception handling is hit and miss, more miss than hit.
+* Marvin takes his time to make his first move, despite having a brain the size of a planet. He might just be depressed. Some refactoring is needed to speed things up.
 
 I was busy implementing a multiplayer mode, but I ran out of time. The idea is to have both players' browsers connect to a pub/sub which will feed them updates as needed. The GameApi layer (and frontend) is the only thing that needs to change to facilitate this.
+
