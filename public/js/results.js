@@ -1,7 +1,7 @@
-$(document).ready(function(){
+$(document).ready(() => {
     $.ajax({
         type: "GET",
-        url: "/results/history/5",
+        url: "/results/history/500",
         dataType: "json",
         success: (response) => {
             if (response.success === false) {
@@ -11,16 +11,17 @@ $(document).ready(function(){
 
             $.each(response.data, (i, e) => {
                 let id = "history_" + e.gameId;
-                $("#sidebar-wrapper.history").append("<div><canvas id='" + id + "' class='history'></canvas></div>");
+                $(".Results .history").append("<div class='col-md'><canvas id='" + id + "' class='cHistory'></canvas></div>");
 
                 let _board = new Board()
                     .SetPlayer1(e.player1)
                     .SetPlayer2(e.player2)
                     .SetTurn(e.turn)
                     .PopulateBoard(e.board)
-                    .SetCanvas(id, 150)
+                    .SetCanvas(id, 250)
                     .Terminate(e.state);
             });
         }
     });
 });
+

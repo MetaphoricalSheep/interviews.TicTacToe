@@ -210,7 +210,7 @@ class GameApi implements IGameApi
      * @param int $limit
      * @return array
      */
-    public function GetHistory(int $limit): array
+    public function GetHistory(int $limit = 200): array
     {
         /** @var GameRepository $repo */
         $repo = $this->_em->getRepository('models\Entities\Game');

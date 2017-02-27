@@ -10,6 +10,7 @@
 use libraries\AjaxResponse;
 use libraries\ApiLayer\GameApi;
 use libraries\ApiLayer\IGameApi;
+use models\ViewModels\Results\ResultsViewModel;
 
 class ResultsController extends \CI_Controller
 {
@@ -24,7 +25,13 @@ class ResultsController extends \CI_Controller
 
     public function index()
     {
-        $games = $this->_gameApi->GetHistory(5);
+        $viewModel = new ResultsViewModel();
+        $viewModel
+            ->SetTitle('Tic Tac Toe - Game Setup')
+            ->SetJavaScript('board')
+            ->SetView('results');
+
+        $this->load->view('master', ['viewModel' => $viewModel]);
     }
 
     /**
