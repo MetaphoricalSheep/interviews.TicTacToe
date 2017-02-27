@@ -166,6 +166,17 @@ class State
     }
 
     /**
+     * @param int $pos
+     * @param string $piece
+     * @return State
+     */
+    public function UpdateBoard(int $pos, string $piece) : State
+    {
+        $this->Board[$pos] = $piece;
+        return $this;
+    }
+
+    /**
      * @param int $position
      * @param IPiece $piece
      * @return State

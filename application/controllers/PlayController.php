@@ -65,4 +65,18 @@ class PlayController extends CI_Controller
         $response->SetData(["state" => $state, "piece" => $piece]);
         $response->ReturnResult();
     }
+
+    /**
+     * @param string $gameId
+     */
+    public function Marvin(string $gameId) : void
+    {
+        $piece = $this->input->post('piece');
+        $player = $this->input->post('player');
+        $data = $this->_gameApi->MoveMarvin($gameId, $piece, $player);
+
+        $response = new AjaxResponse(true);
+        $response->SetData($data);
+        $response->ReturnResult();
+    }
 }

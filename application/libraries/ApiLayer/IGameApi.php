@@ -3,7 +3,6 @@
 namespace libraries\ApiLayer;
 
 
-use Illuminate\Support\Collection;
 use models\Player;
 use models\Game;
 
@@ -49,4 +48,12 @@ interface IGameApi
      * @return array
      */
     public function GetHistory(int $limit) : array;
+
+    /**
+     * @param string $gameId
+     * @param string $piece
+     * @param string $player
+     * @return array
+     */
+    public function MoveMarvin(string $gameId, string $piece, string $player) : array;
 }

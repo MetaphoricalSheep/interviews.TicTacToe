@@ -76,6 +76,11 @@ function Characters(gameTypeId = 1) {
                 let char = new Character().SetId(response.data._id).SetName(response.data._name);
                 _characters.push(char);
                 _playerCountCheck();
+            },
+            complete: () => {
+                if (_gameTypeId == 1) {
+                    _createCharacter("Marvin");
+                }
             }
         });
     };
@@ -97,9 +102,5 @@ function Characters(gameTypeId = 1) {
     };
 
     this.ReturnAll = () => { return _characters };
-
-    if (_gameTypeId == 1) {
-        _createCharacter("Marvin");
-    }
 }
 

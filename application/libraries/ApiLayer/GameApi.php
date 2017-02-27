@@ -10,9 +10,9 @@ namespace libraries\ApiLayer;
 
 
 use Doctrine\ORM\EntityManager;
-use Illuminate\Support\Collection;
 use libraries\TicTacToe\enums\StateEnum;
 use libraries\TicTacToe\exceptions\GameNotFoundException;
+use libraries\TicTacToe\Marvin;
 use libraries\TicTacToe\TicTacToe;
 use models\Entities\GameType;
 use models\Entities as Entities;
@@ -24,6 +24,8 @@ class GameApi implements IGameApi
 {
     /** @var \Doctrine\ORM\EntityManager */
     private $_em;
+    /** @var array  */
+    private $_board = [];
 
     public function __construct(EntityManager $em)
     {
@@ -175,6 +177,8 @@ class GameApi implements IGameApi
         $this->_em->persist($state);
         $this->_em->flush();
 
+        $this->_board = $state->GetBoard();
+
         return $state->GetState();
     }
 
@@ -220,5 +224,44 @@ class GameApi implements IGameApi
         }
 
         return $games;
+    }
+
+    /**
+     * @param string $gameId
+     * @param string $piece
+     * @param string $player
+     * @return array
+     */
+    public function MoveMarvin(string $gameId, string $piece, string $player): array
+    {
+        /** @var Entities\Game $dbGame */
+        $dbGame = $this->_em->getRepository('\models\Entities\Game')->find($gameId);
+        $marvin = new Marvin();
+        $move = $marvin->Move($dbGame->GetState()->MapToEngine());
+
+        list($x, $y) = $this->GetXY($move);
+        $state = $this->Move($gameId, $piece, $player, $x, $y);
+
+        return ["state" => $state, "board" => $this->_board];
+    }
+
+    /**
+     * @param $pos
+     * @return array
+     */
+    public function GetXY($pos) : array
+    {
+        for ($x=0, $y=0, $p=0; $p < 9; $p++, $y++)
+        {
+            if ($y == 3)
+            {
+                $x++;
+                $y=0;
+            }
+
+            if ($p == $pos) {
+                return [$x, $y];
+            }
+        }
     }
 }

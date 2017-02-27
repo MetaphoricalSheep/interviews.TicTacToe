@@ -2,7 +2,8 @@ $(document).ready(() => {
     boardDiv = $(".board");
     let board = new Board(boardDiv.data("gameId"))
         .SetPlayer1(boardDiv.data("player1"))
-        .SetPlayer2(boardDiv.data("player2"));
+        .SetPlayer2(boardDiv.data("player2"))
+        .SetGameTypeId(boardDiv.data("gameTypeId"));
 
     $.ajax({
         type: "GET",
@@ -15,10 +16,10 @@ $(document).ready(() => {
             }
 
             board
-                .SetTurn(response.data.turn)
                 .PopulateBoard(response.data.board)
                 .SetCanvas("tic-tac-toe-board")
-                .Terminate(response.data.state);
+                .Terminate(response.data.state)
+                .SetTurn(response.data.turn);
         }
     });
 

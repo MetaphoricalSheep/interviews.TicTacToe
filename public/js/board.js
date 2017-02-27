@@ -11,10 +11,23 @@ function Board(gameId) {
         _player1 = "",
         _player2 = "",
         _currentPlayer = _player1,
+        _gameTypeId,
         _whoami = _player1; //used for AI and multiplayer
 
     this.SetTurn = (turn) => {
         _turn = turn;
+
+        if (_gameTypeId === 1) {
+            if ((turn == "X" && _player1 !== _whoami) || (turn == "O" && _player2 !== _whoami)) {
+                _callMarvin();
+            }
+        }
+
+        return this;
+    };
+
+    this.SetGameTypeId = (id) => {
+        _gameTypeId = id;
         return this;
     };
 
@@ -27,10 +40,12 @@ function Board(gameId) {
 
         if (_turn === "X") {
             _currentPlayer = _player1;
-            _whoami = _player1;
         } else {
             _currentPlayer = _player2;
-            _whoami = _player2;
+        }
+
+        if (_gameTypeId === 3) {
+            _whoami = _currentPlayer;
         }
 
         return this;
@@ -51,6 +66,44 @@ function Board(gameId) {
     this.SetLineColor = (color) => {
         _lineColor = color;
         return this;
+    };
+
+    let _callMarvin = () => {
+        if (_currentPlayer !== _player2 && _gameTypeId !== 1)
+        {
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/play/marvin/" + _gameId,
+            dataType: "json",
+            data: {
+                "piece": "O",
+                "player": _player2,
+            },
+            success: (response) => {
+                if (response.success === false)
+                {
+                    alert(response.error);
+                    return false;
+                }
+
+                this.PopulateBoard(response.data.board);
+                _DrawBoard();
+
+                if (response.data.state > 1) {
+                    this.Terminate(response.data.state);
+                }
+            },
+            complete: (jqXHR, status) => {
+                if (status === "success") {
+                    _ProgressTurn();
+                }
+
+                _locked = false;
+            }
+        });
     };
 
     let _DrawX = (x, y) => {
@@ -95,11 +148,21 @@ function Board(gameId) {
 
     let _ProgressTurn = () => {
         if (_currentPlayer == _player1) {
-            _whoami = _player2;
+            _currentPlayer = _player2;
         } else {
-            _whoami = _player1;
+            _currentPlayer = _player1;
         }
-        _currentPlayer = _whoami
+
+        if (_gameTypeId === 3) {
+            _whoami = _currentPlayer;
+        }
+
+        if (_gameTypeId === 1 && _whoami !== _currentPlayer) {
+            _callMarvin();
+            return;
+        }
+
+        _locked = false;
     };
 
     let _ValidateMove = (x, y, boardX, boardY) => {
@@ -155,8 +218,6 @@ function Board(gameId) {
                 if (status === "success") {
                     _ProgressTurn();
                 }
-
-                _locked = false;
             }
         });
     };
@@ -168,12 +229,8 @@ function Board(gameId) {
                     yCoord = y * _sectionSize;
 
                 /**
-                12. Players still needs to be randomized
                 14. Results page still needs to be built
-                16. do basic (random) ai
                 17. do min/max ai
-                18. do ai taunts
-                19. do character customization
                 22. Responsiveness needs work
                  **/
 
@@ -324,6 +381,8 @@ function Board(gameId) {
             }
             _locked = true;
         }
+
+        return this;
     };
 
     this.PopulateBoard = (flatBoard) => {
