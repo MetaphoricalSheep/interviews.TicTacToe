@@ -51,7 +51,7 @@ You will need the following properly installed on your computer.
 
 ## Todo
 
-* The results page was a rush job. I missed it in the spec. Added it quickly as a afterthought. It needs refining.
+* The results page was a rush job. I missed it in the spec. Added it quickly as an afterthought. It needs refining.
 * Marvin (the AI) always plays on the most difficult level at the moment. I need to add different difficulty levels.
 * The history side bar hides on smaller screen sizes, but that is about the only thing that is currently responsive on this project.
 
