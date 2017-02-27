@@ -4,7 +4,7 @@ This is a Tic Tac Toe game that I wrote for a Senior PHP developer interview.
 
 The project was created using CodeIgniter 3.1.3, bootstrap 4.0.0-alpha.6 and Doctrine 2 running on PHP 7.1.0 and Percona-Server 5.7 (Mysql Fork). 
 Please stay away from IE...
-I tested it quickly on Firefox and it seemed fine. Used the latest build of Chrome while developing.
+I tested it quickly on Firefox and it seemed fine. I used the latest build of Chrome while developing.
 
 
 ## The Specification
@@ -47,3 +47,12 @@ You will need the following properly installed on your computer.
 * `$ cd path/to/project/TicTacToe/public`
 * `$ php -S [ip]:8000`
 * Open Chrome and point it to [ip]:8000
+
+
+## Todo
+
+* The results page was a rush job. I missed it in the spec. Added it quickly as a afterthought. It needs refining.
+* Marvin (the AI) always plays on the most difficult level at the moment. I need to add different difficulty levels.
+* The history side bar hides on smaller screen sizes, but that is about the only thing that is currently responsive on this project.
+
+I was busy implementing a multiplayer mode, but I ran out of time. The idea is to have both players' browsers connect to a pub/sub which will feed them updates as needed. The GameApi layer (and frontend) is the only thing that needs to change to facilitate this.
