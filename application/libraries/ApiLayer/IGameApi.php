@@ -32,4 +32,14 @@ interface IGameApi
      * @return Game
      */
     public function GetGame(string $id) : Game;
+
+    /**
+     * @param string $gameId
+     * @param string $piece
+     * @param string $playerId
+     * @param int $x
+     * @param int $y
+     * @return int
+     */
+    public function Move(string $gameId, string $piece, string $playerId, int $x, int $y) : int;
 }

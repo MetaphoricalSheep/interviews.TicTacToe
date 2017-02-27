@@ -22,31 +22,46 @@ function Characters(gameTypeId = 1) {
     let _gameTypeId = gameTypeId;
 
     this.Create = () => {
-        _names.each((i, e) => {
-            let name = $(e).val().trim();
+        if (!_playerCountCheck()) {
+            _names.each((i, e) => {
+                let name = $(e).val().trim();
 
-            if (name === "") {
-                alert("Please enter a valid character name!");
-                return false;
-            }
+                if (name === "") {
+                    alert("Please enter a valid character name!");
+                    return false;
+                }
 
-            if (name.length < 4 || name.length > 80) {
-                alert("Character name must be between 4 and 80 characters long.");
-                return false;
-            }
+                if (name.length < 4 || name.length > 80) {
+                    alert("Character name must be between 4 and 80 characters long.");
+                    return false;
+                }
 
-            if (name === "Marvin") {
-                alert("Marvin: Do you want me to sit in a corner and rust or just fall apart where I'm standing?");
-                return false;
-            }
+                if (name === "Marvin") {
+                    alert("Marvin: Do you want me to sit in a corner and rust or just fall apart where I'm standing?");
+                    return false;
+                }
 
-            if (this.FindByName(name) !== false) {
-                alert(name + "!!1! You can't play against yourself...")
-                return false;
-            }
+                if (this.FindByName(name) !== false) {
+                    alert(name + "!!1! You can't play against yourself...")
+                    return false;
+                }
 
-            _createCharacter(name);
-        });
+                _createCharacter(name);
+            });
+        }
+    };
+
+    let _playerCountCheck = () => {
+        if (_characters.length == _expectedPlayerCount)
+        {
+            new Game()
+                .AddPlayer(_characters[0].Id)
+                .AddPlayer(_characters[1].Id)
+                .SetGameTypeId(_gameTypeId)
+                .Create();
+            return true;
+        }
+        return false;
     };
 
     let _createCharacter = (name) => {
@@ -63,15 +78,7 @@ function Characters(gameTypeId = 1) {
 
                 let char = new Character().SetId(response.data._id).SetName(response.data._name);
                 _characters.push(char);
-
-                if (_characters.length == _expectedPlayerCount)
-                {
-                    new Game()
-                        .AddPlayer(_characters[0].Id)
-                        .AddPlayer(_characters[1].Id)
-                        .SetGameTypeId(_gameTypeId)
-                        .Create();
-                }
+                _playerCountCheck();
             }
         });
     };

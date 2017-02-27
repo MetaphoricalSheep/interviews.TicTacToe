@@ -43,6 +43,9 @@ class Game
     /** @var  GameType */
     private $_gameType;
 
+    /** @var array  */
+    private $_board = ["", "", "", "", "", "", "", "", ""];
+
     /**
      * Game constructor.
      * @param Entities\Game|null $game
@@ -60,6 +63,7 @@ class Game
             $this->_startDate = $game->GetDateCreated();
             $this->_dateCreated = $game->GetDateEnded();
             $this->_gameType = $game->GetGameType();
+            $this->_board = $game->GetState()->GetBoard();
             $this->SetLocalPlayerCount($game->GetGameType());
         }
     }
@@ -164,13 +168,21 @@ class Game
         return $this;
     }
 
-    public function MapToDoctrine(EntityManager $em)
+    /**
+     * @return array
+     */
+    public function GetBoard() : array
     {
-        $game = $em->getRepository('models\Entities\Game')->find($this->_id);
+        return $this->_board;
+    }
 
-        if ($game == null)
-        {
-            $game = new Entities\Game();
-        }
+    /**
+     * @param array $board
+     * @return Game
+     */
+    public function SetBoard(array $board) : Game
+    {
+        $this->_board = $board;
+        return $this;
     }
 }

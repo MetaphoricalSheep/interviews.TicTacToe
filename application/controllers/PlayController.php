@@ -6,6 +6,7 @@
  * Time: 11:05 PM
  */
 
+use libraries\AjaxResponse;
 use libraries\ApiLayer\GameApi;
 use libraries\ApiLayer\IGameApi;
 use models\ViewModels\Play\PlayViewModel;
@@ -28,7 +29,7 @@ class PlayController extends CI_Controller
     /**
      * @param string $gameId
      */
-    public function index(string $gameId)
+    public function index(string $gameId) : void
     {
         $game = $this->_gameApi->GetGame($gameId);
 
@@ -38,7 +39,28 @@ class PlayController extends CI_Controller
             ->SetPartial('_resultsbar')
             ->SetJavaScript('board')
             ->SetView('play');
+        $viewModel
+            ->SetGameId($gameId)
+            ->SetPlayer1($game->GetPlayer1()->GetId())
+            ->SetPlayer2($game->GetPlayer2()->GetId())
+            ->SetBoard($game->GetBoard());
 
         $this->load->view('master', ['viewModel' => $viewModel]);
+    }
+
+    /**
+     * @param string $gameId
+     */
+    public function Move(string $gameId) : void
+    {
+        $piece = $this->input->post('piece');
+        $player = $this->input->post('player');
+        $x = $this->input->post('x');
+        $y = $this->input->post('y');
+        $state = $this->_gameApi->Move($gameId, $piece, $player, $x, $y);
+
+        $response = new AjaxResponse(true);
+        $response->SetData(["state" => $state, "piece" => $piece]);
+        $response->ReturnResult();
     }
 }

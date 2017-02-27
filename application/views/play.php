@@ -10,7 +10,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 
         <div class="row justify-content-center">
-            <div class="col- board">
+            <div class="col- board" data-game-id="<?=$viewModel->GetGameId()?>"
+                 data-player1="<?=$viewModel->GetPlayer1()?>" data-player2="<?=$viewModel->GetPlayer2()?>">
                 <canvas id="tic-tac-toe-board"></canvas>
             </div>
         </div>

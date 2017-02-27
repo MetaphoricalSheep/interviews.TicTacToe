@@ -34,7 +34,6 @@ function Game() {
                 "gameType": _gameTypeId
             },
             success: (response) => {
-                alert("here");
                 if (response.success === false)
                 {
                     alert(response.error);

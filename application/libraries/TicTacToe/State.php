@@ -25,7 +25,7 @@ class State
     protected $State = StateEnum::NewGame;
 
     /** @var array **/
-    protected $Board = [];
+    protected $Board = ["", "", "", "", "", "", "", "", ""];
 
     /** @var int **/
     protected $Position;
@@ -35,10 +35,10 @@ class State
 
     /**
      * State constructor.
-     * @param $previousState
+     * @param State|null $previousState
      * @return State
      */
-    public function __construct($previousState)
+    public function __construct($previousState = null)
     {
         if ($previousState != null)
         {
@@ -64,7 +64,7 @@ class State
      * @return State $this
      * @throws InvalidPositionException
      */
-    protected function SetPosition($position) : State
+    public function SetPosition($position) : State
     {
         if ($position < 0 || $position > 8 || $this->Board[$position] != null)
         {
@@ -83,6 +83,16 @@ class State
     }
 
     /**
+     * @param int $state
+     * @return State
+     */
+    public function SetState(int $state) : State
+    {
+        $this->State = $state;
+        return $this;
+    }
+
+    /**
      * @return IPiece
      */
     public function GetPiece() : IPiece
@@ -95,9 +105,9 @@ class State
      * @return State $this
      * @throws OutOfTurnException
      */
-    protected function SetPiece($piece) : State
+    public function SetPiece($piece) : State
     {
-        if ($piece != $this->Turn)
+        if ($piece->GetSymbol() != $this->Turn)
         {
             throw new OutOfTurnException($piece->GetSymbol());
         }
@@ -114,18 +124,60 @@ class State
     }
 
     /**
+     * @param int $round
+     * @return State
+     */
+    public function SetRound(int $round) : State
+    {
+        $this->Round = $round;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function GetTurn() : string
+    {
+        return $this->Turn;
+    }
+
+    /**
+     * @param string $turn
+     * @return State
+     */
+    public function SetTurn(string $turn) : State
+    {
+        $this->Turn = $turn;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function GetBoard() : array
+    {
+        return $this->Board;
+    }
+
+    public function SetBoard(array $board) : State
+    {
+        $this->Board = $board;
+        return $this;
+    }
+
+    /**
      * @param int $position
      * @param IPiece $piece
-     * @return int
+     * @return State
      */
-    public function TransitionState($position, $piece) : int
+    public function TransitionState($position, $piece) : State
     {
         if ($this->Round == 9)
         {
             return $this->State;
         }
 
-        $this->AdvanceRound();
+        $this->State = StateEnum::InProgress;
 
         $this->SetPosition($position);
         $this->SetPiece($piece);
@@ -133,7 +185,14 @@ class State
         $this->Move();
         $this->TerminalCheck();
 
-        return $this->State;
+        if ($this->State != StateEnum::InProgress)
+        {
+            return $this;
+        }
+
+        $this->AdvanceRound();
+
+        return $this;
     }
 
     protected function Move()
@@ -146,50 +205,53 @@ class State
      */
     private function TerminalCheck()
     {
-        $board = $this->Board;
-
-        for ($r = 0; $r <= 6; $r+=3)
+        if ($this->Round > 4)
         {
-            $p = $board[$r];
-            if ($p != null && $p == $board[$r + 1] &&  $p == $board[$r + 2])
+            $board = $this->Board;
+
+            for ($r = 0; $r <= 6; $r+=3)
             {
-                $this->DeclareWinner($p);
-                return;
+                $p = $board[$r];
+                if ($p != "" && $p == $board[$r + 1] &&  $p == $board[$r + 2])
+                {
+                    $this->DeclareWinner($p);
+                    return;
+                }
             }
-        }
-        unset($r, $p);
+            unset($r, $p);
 
-        for ($c = 0; $c <= 2; $c++)
-        {
-            $p = $board[$c];
-            if ($p != null && $p == $board[$c + 3] && $p == $board[$c + 6])
+            for ($c = 0; $c <= 2; $c++)
             {
-                $this->DeclareWinner($p);
-                return;
+                $p = $board[$c];
+                if ($p != "" && $p == $board[$c + 3] && $p == $board[$c + 6])
+                {
+                    $this->DeclareWinner($p);
+                    return;
+                }
             }
-        }
-        unset($c, $p);
+            unset($c, $p);
 
-        for ($r = 0, $d = 4; $r <= 2 ; $r+=2, $d-=2)
-        {
-            $p = $board[$r];
-            if ($p != null && $p == $board[$r + $d] && $p == $board[$r + 2 * $d])
+            for ($r = 0, $d = 4; $r <= 2 ; $r+=2, $d-=2)
             {
-                $this->DeclareWinner($p);
-                return;
+                $p = $board[$r];
+                if ($p != "" && $p == $board[$r + $d] && $p == $board[$r + 2 * $d])
+                {
+                    $this->DeclareWinner($p);
+                    return;
+                }
             }
-        }
-        unset($r, $d, $p);
+            unset($r, $d, $p);
 
-        if ($this->Round >= 9)
-        {
-            $this->DeclareDraw();
+            if ($this->Round >= 9)
+            {
+                $this->DeclareDraw();
+            }
         }
     }
 
     private function DeclareWinner($piece)
     {
-        $this->State = ($piece == 'X') ? StateEnum::Player1Wins : StateEnum::Player2Wins;
+        $this->State = ($piece == BasePiece::Cross) ? StateEnum::Player1Wins : StateEnum::Player2Wins;
     }
 
     private function DeclareDraw()
@@ -199,7 +261,7 @@ class State
 
     private function AdvanceRound()
     {
-        $this->Turn = BasePiece::Cross ? BasePiece::Naught : BasePiece::Cross;
+        $this->Turn = ($this->Turn == BasePiece::Cross) ? BasePiece::Naught : BasePiece::Cross;
         $this->Round++;
     }
 }

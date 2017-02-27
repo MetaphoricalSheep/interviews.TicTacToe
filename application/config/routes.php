@@ -57,3 +57,4 @@ $route['game-setup/(:num)'] = 'GameSetupController/index/$1';
 $route['game-setup/create-character/(:any)'] = 'GameSetupController/CreatePlayer/$1';
 $route['game-setup/create-game'] = 'GameSetupController/CreateGame';
 $route['play/(:any)'] = 'PlayController/index/$1';
+$route['play/move/(:any)'] = 'PlayController/Move/$1';

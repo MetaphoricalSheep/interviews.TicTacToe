@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 use libraries\traits\Timestampable;
 use Ramsey\Uuid\Uuid;
@@ -70,6 +71,14 @@ class Game
      * @JoinColumn(name="GameTypeId", referencedColumnName="Id", nullable=false)
      */
     protected $GameType;
+
+    /**
+     * @var State
+     * @OneToOne(targetEntity="State", cascade={"persist"})
+     * @JoinColumn(name="StateId", referencedColumnName="Id", nullable=true)
+     */
+    protected $State;
+
 
     /**
      * @return Uuid
@@ -165,6 +174,24 @@ class Game
     public function SetGameType(GameType $gameType) : Game
     {
         $this->GameType = $gameType;
+        return $this;
+    }
+
+    /**
+     * @return State
+     */
+    public function GetState() : State
+    {
+        return $this->State;
+    }
+
+    /**
+     * @param State $state
+     * @return Game
+     */
+    public function SetState(State $state) : Game
+    {
+        $this->State = $state;
         return $this;
     }
 }
