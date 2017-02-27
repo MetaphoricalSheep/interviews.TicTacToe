@@ -228,12 +228,6 @@ function Board(gameId) {
                 let xCoord = x * _sectionSize,
                     yCoord = y * _sectionSize;
 
-                /**
-                14. Results page still needs to be built
-                17. do min/max ai
-                22. Responsiveness needs work
-                 **/
-
                 if (pos.x >= xCoord && pos.x <= xCoord + _sectionSize && pos.y >= yCoord
                     && pos.y <= yCoord + _sectionSize) {
                     _ValidateMove(xCoord, yCoord, x, y);

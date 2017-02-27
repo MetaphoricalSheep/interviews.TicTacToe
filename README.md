@@ -2,10 +2,9 @@
 
 This is a Tic Tac Toe game that I wrote for a Senior PHP developer interview.
 
-* I used the CodeIgniter 3.1.3 framework
-* I used Eloqent ORM
-* I used bootstrap
-* I used composer
+The project was created using CodeIgniter 3.1.3, bootstrap 4.0.0-alpha.6 and Doctrine 2 running on PHP 7.1.0 and Percona-Server 5.7 (Mysql Fork). 
+Please stay away from IE...
+I tested it quickly on Firefox and it seemed fine. Used the latest build of Chrome while developing.
 
 
 ## The Specification
@@ -27,24 +26,24 @@ This is a Tic Tac Toe game that I wrote for a Senior PHP developer interview.
 You will need the following properly installed on your computer.
 
 * [Git](http://git-scm.com/)
-* [PHP 7](http://php.net/downloads.php)
-* [MySQL](http://dev.mysql.com/downloads/)
+* [PHP 7.1.2](http://php.net/downloads.php)
+* [MySQL 5.7](http://dev.mysql.com/downloads/)
 
 
 ## Installation
 
-* `$ git clone https://github.com/MetaphoricalSheep/interviews.TicTacToe.git`
-* `$ cd interview.TicTacToe`
-* `$ php application/composer.phar install`
-* `$ vim application/config/database.php`
-* `$ mysql -u <username> -p<password> < database.sql`
+* `$ git clone https://github.com/MetaphoricalSheep/interviews.TicTacToe.git ./TicTacToe`
+* `$ cd TicTacToe/application`
+* `$ php composer.phar update`
+* `$ vim config/database.php`
+* `$ echo "create database TicTacToe" | mysql -u <user> -p<password>`
+* `$ php cli-doctrine.php orm:schema-tool:create`
+* `$ php cli.php seed:types`
+* `$ php cli.php seed:marvin`
 
 
 ## Running
 
-* `$ cd path/to/project/interviews.TicTacToe`
+* `$ cd path/to/project/TicTacToe/public`
 * `$ php -S [ip]:8000`
 * Open Chrome and point it to [ip]:8000
-
-
-## External packages used
