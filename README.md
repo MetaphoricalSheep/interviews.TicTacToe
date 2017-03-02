@@ -42,6 +42,19 @@ You will need the following properly installed on your computer.
 * `$ php cli.php seed:marvin`
 
 
+## Issues
+
+* Composer complains about bcmath or zip -> `$ sudo apt install php-bcmath php-zip`
+* cli-doctrine.php complains about missing drivers -> `$ sudo apt install php-mysql`
+* cli-doctrine complains about Parse error: 
+
+![? Parse error](https://raw.githubusercontent.com/MetaphoricalSheep/interviews.TicTacToe/master/parse_error.png)
+
+**Use PHP 7.1**
+
+Php 7.1 allows for nullable return types, you'll spot something like public function SomeFunction(string arg) : ?SomeClass in the code. The ? before SomeClass tells the interpreter that SomeClass might be null.
+
+
 ## Running
 
 * `$ cd path/to/project/TicTacToe/public`
